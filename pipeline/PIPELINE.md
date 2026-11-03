@@ -73,15 +73,20 @@ Check: no text outside the frame or under the captions (keep content above y≈9
 - Sample 12 frames from VIDEO.mp4 into a contact sheet and look at it before uploading.
 
 ## 9. Upload (Metricool, brand blogId `7850889`, YouTube channel UCy4RTiZ57S2HfvPEiRJ2Y3Q)
-1. Copy VIDEO.mp4 + thumb JPG to `videos/<date>-<slug>.*` in the repo, commit, push.
-   Public URL: `https://raw.githubusercontent.com/mees-byte/bom-media/main/videos/<file>`.
+1. Host the files on the throw-away branch `media` (one commit, force-pushed, so main never grows):
+   ```
+   cd /home/claude && rm -rf media && mkdir media && cp work/VIDEO.mp4 media/<date>-<slug>.mp4 && cp work/thumb.jpg media/<date>-<slug>.jpg
+   cd media && git init -q -b media && git add . && git -c user.name=Claude -c user.email=noreply@anthropic.com commit -qm "media <date>" \
+     && git push -f https://github.com/mees-byte/bom-media media
+   ```
+   Public URL: `https://raw.githubusercontent.com/mees-byte/bom-media/media/<file>` (check it returns 200 with curl).
 2. `createScheduledPost` with date `<slot>T17:00:00+01:00` (or +02:00 in summer time) and info JSON exactly like
    `examples/blockbuster/post_info.json`: autoPublish true, providers youtube, youtubeData {title (A), type video, privacy public,
    tags (≤ 490 chars total), category EDUCATION, madeForKids false, isAiGeneratedContent false}, videoThumbnailUrl,
    text = long SEO description (≥ 1,500 chars: hook sentences, "In this animated explainer…", What you'll learn, Sources, Chapters
    from the chapter scene times + 1 s, "Not financial advice. For education only.", credits, exactly 3 hashtags).
    If the thumbnail is rejected (VIDEO_THUMBNAIL_NOT_APPLICABLE), retry once without videoThumbnailUrl.
-3. Metricool copies the media to its own storage → `git rm` the files from `videos/`, commit, push.
+3. Metricool copies the media to its own storage (the response shows static.metricool.com URLs). Nothing to clean up — the next run overwrites the `media` branch.
 
 ## 10. Short (only in the Sunday and Tuesday runs, i.e. for Monday/Wednesday videos)
 - Metricool free plan = 20 posts per calendar month. Count this month's posts with `getScheduledPosts` + the SCHEDULE log;
