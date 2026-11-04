@@ -20,3 +20,4 @@
 - 2026-11-04: Blockbuster thumbnail the owner approved: video design, two buildings in animation style (winner lit up, loser dark with a CLOSED sign), real logos on plates, the number fully written out in WHITE ("$50,000,000") with a GOLD question mark. Reference: examples/blockbuster/thumb_buildings.py + thumbnail.jpg.
 - 2026-11-04: raw.githubusercontent.com caches the `media` BRANCH url for minutes (404 right after push). Give Metricool the commit-pinned url instead: https://raw.githubusercontent.com/mees-byte/bom-media/<commit sha>/<file> (check 200 with curl).
 - 2026-11-04: Pixabay clip search often returns cheap CGI (cartoon coins, green 3D bars) or off-topic clips: always look at a frame and drop weak ones; 3 strong clips beat 6 weak ones.
+- 2026-11-04: The `media` branch is shared by parallel runs: only `git rm` YOUR OWN files (same date-slug), never `*.mp4`. (A Blockbuster file was removed by mistake once and restored.)
