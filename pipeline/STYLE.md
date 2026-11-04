@@ -1,5 +1,20 @@
 # STYLE — lessons (apply to every video)
 
+## OWNER PREFERENCES (Mees) — always apply, they override anything below
+1. **Sound:** NO whoosh/sweep on scene changes or chapters. Only the short impact on big numbers is OK.
+2. **Thumbnail:** same design as the video, made with pipeline/thumb.py — NO AI-generated images. Real company logo(s) on white plates,
+   WHITE text with black outline, (gold) question marks, a curiosity question. Bottom-right corner empty. Approved: examples/binance/thumb_spec.json
+   (dark, "WHO STOLE $6.3 BILLION? IN 20 MINUTES") and examples/blockbuster/thumbnail.jpg.
+3. **Visuals:** like the approved Binance v5 / Blockbuster v3: Pixabay photo backgrounds behind ~2/3 of the scenes ("px:"), 2–3 bright photo
+   breaks ("pxb:" + photo kind), 3–6 Pixabay b-roll clips; chapter cards plain. Photo must match the claim. Reference: examples/binance/scenes.py.
+4. **Logos:** real company logos, never the company name as plain text.
+5. **Voice:** Arthur on eleven_v4 with delivery tags (faster, more conviction).
+6. **Credits:** use as few as possible. Pixabay/own rendering = free. No AI thumbnails, no vocal-check transcriptions, vidIQ max 1 call per trend run.
+7. **Communication:** all messages to Mees in Dutch, short. Send the finished video/thumbnail as a file when he asks (costs nothing).
+8. Pixabay key: never in this public repo; it comes from the scheduled-task prompt.
+
+## Dated lessons
+
 - 2026-11-03: Voice = Arthur (C1npRmjB19a6yNkEucvx) on eleven_v4 with delivery tags. Owner found multilingual_v2 too slow; v4 + tags = faster, more conviction.
 - 2026-11-03: 480–520 words ≈ 3:15–3:30 with v4. 536 words gave 3:28.
 - 2026-11-03: Real company logos on white plates instead of brand names as text (owner request).
