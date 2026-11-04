@@ -72,7 +72,7 @@ Check: no text outside the frame or under the captions (keep content above y≈9
 - `VIDEO_DIR=work python3 bom-media/pipeline/mix.py work/thumb.png work/music.mp3` → `work/VIDEO.mp4` (thumbnail opens the video for 1 s).
 - Sample 12 frames from VIDEO.mp4 into a contact sheet and look at it before uploading.
 
-## 9. Upload (Metricool, brand blogId `7850889`, YouTube channel UCy4RTiZ57S2HfvPEiRJ2Y3Q)
+## 9. Upload (Metricool, brand blogId `7850889`, YouTube channel UC9XemljFJXqS7VdjXSOcefg = Billion Dollar Mistakes; NOT UCy4RTiZ57S2HfvPEiRJ2Y3Q = personal channel)
 1. Host the files on the throw-away branch `media` (one commit, force-pushed, so main never grows):
    ```
    cd /home/claude && rm -rf media && mkdir media && cp work/VIDEO.mp4 media/<date>-<slug>.mp4 && cp work/thumb.jpg media/<date>-<slug>.jpg
