@@ -463,6 +463,33 @@ def k_subscribe(img, t, dur, a):
 def k_debt(img, t, dur, a):
     k_count(img, t, dur, a)
 
+_broll = {}
+def k_broll(img, t, dur, a):
+    """Pixabay stock clip as full-screen background (pipeline/pixabay.py). args: clip=<name>, ss=start sec,
+    optional kicker / lines (bottom-left, stays above the captions), dim=0..1 darkening (default .35)."""
+    name = a["clip"]
+    if name not in _broll:
+        fdir = os.path.join(ROOT, "broll", "frames", name); os.makedirs(fdir, exist_ok=True)
+        if not os.listdir(fdir):
+            subprocess.run(["ffmpeg", "-v", "error", "-ss", str(a.get("ss", 0)), "-i", os.path.join(ROOT, "broll", name + ".mp4"),
+                            "-vf", "fps=30", "-q:v", "3", os.path.join(fdir, "%04d.jpg")], check=True)
+        _broll[name] = sorted(os.listdir(fdir))
+    fr = _broll[name]; fdir = os.path.join(ROOT, "broll", "frames", name)
+    i = min(len(fr) - 1, int(t * FPS)) if a.get("hold", True) else int(t * FPS) % len(fr)
+    im = Image.open(os.path.join(fdir, fr[i])).convert("RGBA").resize((W, H))
+    img.paste(im, (0, 0))
+    img.alpha_composite(Image.new("RGBA", img.size, (0, 0, 0, int(255 * a.get("dim", 0.35)))))
+    y = 820 - 110 * (len(a.get("lines", [])) - 1)
+    if a.get("kicker"): slide_text(img, (110, y - 95), a["kicker"], 40, t, 0.1, fill=GOLD, w="Bold", anchor="lm")
+    for j, ln in enumerate(a.get("lines", [])):
+        s_, col = (ln, INK) if isinstance(ln, str) else ln
+        lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); ld = ImageDraw.Draw(lay)
+        p = ease((t - 0.2 - j * 0.2) / 0.4)
+        if p > 0:
+            ld.text((110 + 40 * (1 - p), y + j * 110), s_, font=F(fit(s_, 96, W - 300)), fill=col + (int(255 * p),), anchor="lm",
+                    stroke_width=6, stroke_fill=(0, 0, 0, int(255 * p)))
+            img.alpha_composite(lay)
+
 KINDS = {k[2:]: v for k, v in globals().items() if k.startswith("k_")}
 
 # ---------- scene list (per video: VIDEO_DIR/scenes.py, uses sc(phrase, kind, bg, **args)) ----------

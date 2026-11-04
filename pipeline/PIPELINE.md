@@ -58,6 +58,15 @@ and pick the next evergreen instead.
   (title/count/people) and `plate=(250,250,252)` on coloured backgrounds. Existing in `pipeline/logos/`: netflix, blockbuster, seveneleven.
 - Never draw invented chart data. Never show photos of real people (use the generic person card).
 
+## 6b. B-roll from Pixabay (free, no credits)
+- Key: `PIXABAY_KEY` comes from the scheduled-task prompt / owner — NEVER write it into this public repo. No key → skip b-roll, mention it in the final message.
+- 4–6 clips per video, mood only (server room, code on screen, vault, stock ticker screen, city at night, ice…), matched to the chapter:
+  `PIXABAY_KEY=… VIDEO_DIR=work python3 bom-media/pipeline/pixabay.py "<terms>" <name> 5` → `work/broll/<name>.mp4` (+ credits.txt).
+- Use in scenes.py: `sc("anchor", "broll", "dark", clip="<name>", kicker="…", lines=["…", ("…", GOLD)])` (dim=0.35 default).
+  B-roll is a pattern break: max ~4 s each, never two in a row, never on a key number/claim (those stay animated).
+- LOOK at one preview frame per clip: no identifiable people, no fake logos/brands, nothing that pretends to be footage of the real event.
+- Add "Stock footage: Pixabay" to the description credits line.
+
 ## 7. Render + check
 ```
 VIDEO_DIR=work python3 bom-media/pipeline/render.py preview 3@1.5 10@2 ...   # check 6+ busy frames with Read
