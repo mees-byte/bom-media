@@ -67,6 +67,13 @@ and pick the next evergreen instead.
 - LOOK at one preview frame per clip: no identifiable people, no fake logos/brands, nothing that pretends to be footage of the real event.
 - Add "Stock footage: Pixabay" to the description credits line.
 
+## 6c. Photo backgrounds from Pixabay (free, no credits)
+- `PIXABAY_KEY=… VIDEO_DIR=work python3 bom-media/pipeline/pixabay_photos.py '[["name","search terms"], …]'` (~15–20 queries matched to the story:
+  money, the industry's objects, city, boardroom, clock, closed sign, chess, charts…) → look at `work/px_dl/_sheet.jpg`, copy the best to `work/px/<name>.jpg`.
+- In scenes.py set the background of most animation scenes to `"px:<name>"`; use `"pxb:<name>"` + kind `photo` (lines=[…], y=…, optional logo) for 2–3 bright pattern breaks.
+  Keep the plain coloured backgrounds for chapter cards and a few scenes for rhythm. First scene: a bright photo.
+- Add "Photos & stock footage: Pixabay" to the description credits line.
+
 ## 7. Render + check
 ```
 VIDEO_DIR=work python3 bom-media/pipeline/render.py preview 3@1.5 10@2 ...   # check 6+ busy frames with Read
@@ -92,7 +99,7 @@ Check: no text outside the frame or under the captions (keep content above y≈9
    cd media && git init -q -b media && git add . && git -c user.name=Claude -c user.email=noreply@anthropic.com commit -qm "media <date>" \
      && git push -f https://github.com/mees-byte/bom-media media
    ```
-   Public URL: `https://raw.githubusercontent.com/mees-byte/bom-media/media/<file>` (check it returns 200 with curl).
+   Public URL: use the COMMIT-PINNED url `https://raw.githubusercontent.com/mees-byte/bom-media/<commit sha>/<file>` (the branch url is cached and 404s for minutes); check 200 with curl.
 2. `createScheduledPost` with date `<slot>T17:00:00+01:00` (or +02:00 in summer time) and info JSON exactly like
    `examples/blockbuster/post_info.json`: autoPublish true, providers youtube, youtubeData {title (A), type video, privacy public,
    tags (≤ 490 chars total), category EDUCATION, madeForKids false, isAiGeneratedContent false}, videoThumbnailUrl,

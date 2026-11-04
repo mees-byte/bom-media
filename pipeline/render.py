@@ -78,6 +78,54 @@ def bg(name, t):
     ox = int(100 + 60 * math.sin(t * 0.25)); oy = int(60 + 30 * math.cos(t * 0.2))
     return b.crop((ox, oy, ox + W, oy + H)).copy()
 
+_pc = {}
+def photo_base(name, mode):
+    """cover-scaled photo (12% oversize), graded: 'dark' = behind graphics, 'bright' = full-screen pattern break"""
+    k = (name, mode)
+    if k not in _pc:
+        from PIL import ImageEnhance
+        pth = os.path.join(ROOT, "px", name + ".jpg")
+        im = Image.open(pth).convert("RGB")
+        bw, bh = int(W * 1.12), int(H * 1.12)
+        sc_ = max(bw / im.width, bh / im.height)
+        im = im.resize((int(im.width * sc_) + 1, int(im.height * sc_) + 1), Image.LANCZOS)
+        im = im.crop(((im.width - bw) // 2, (im.height - bh) // 2, (im.width - bw) // 2 + bw, (im.height - bh) // 2 + bh))
+        im = ImageEnhance.Contrast(im).enhance(1.15)
+        im = ImageEnhance.Color(im).enhance(1.1 if mode == "bright" else 0.75)
+        im = im.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=2))
+        if mode == "dark":
+            shade = Image.new("RGB", im.size, (8, 10, 20))
+            im = im.filter(ImageFilter.GaussianBlur(2.2))
+            im = Image.blend(im, shade, 0.70)
+        # vignette + bottom gradient for captions
+        v = Image.new("L", im.size, 0); vd = ImageDraw.Draw(v)
+        vd.ellipse([-250, -200, im.width + 250, im.height + 200], fill=255)
+        v = v.filter(ImageFilter.GaussianBlur(200))
+        g = Image.new("L", im.size, 0); gd = ImageDraw.Draw(g)
+        for y in range(im.height):
+            st = 0.62 if mode == "dark" else 0.40
+            f = clamp((y - im.height * st) / (im.height * (1 - st)))
+            gd.line([(0, y), (im.width, y)], fill=int(255 - (210 if mode == "dark" else 235) * f))
+        from PIL import ImageChops
+        m = ImageChops.multiply(v, g)
+        im = Image.composite(im, Image.new("RGB", im.size, (4, 5, 10)), m)
+        _pc[k] = im
+    return _pc[k]
+
+def bg_scene(name, T, t, dur):
+    if name.startswith("px:") or name.startswith("pxb:"):
+        mode = "bright" if name.startswith("pxb:") else "dark"
+        b = photo_base(name.split(":", 1)[1], mode)
+        p = clamp(t / max(dur, 0.1))
+        z = 1.0 + 0.10 * p                         # slow Ken Burns push-in
+        dx = (b.width - W) * (0.5 + 0.35 * (p - 0.5) * (1 if hash(name) % 2 else -1))
+        cw, ch = W * 1.12 / z, H * 1.12 / z
+        cx, cy = dx + W / 2, b.height / 2
+        box = (cx - cw / 2 * W / (W * 1.12) * 1.12, cy - ch / 2, cx + cw / 2, cy + ch / 2)
+        box = (max(0, cx - cw / 2), max(0, cy - ch / 2), min(b.width, cx + cw / 2), min(b.height, cy + ch / 2))
+        return b.crop(tuple(int(v) for v in box)).resize((W, H), Image.BILINEAR)
+    return bg(name, T)
+
 def text(d, xy, s, size, fill=INK, w="Black", anchor="mm", stroke=0, sfill=(0, 0, 0)):
     d.text(xy, s, font=F(size, w), fill=fill, anchor=anchor, stroke_width=stroke, stroke_fill=sfill)
 
@@ -201,6 +249,19 @@ def k_title(img, t, dur, a):
         slide_text(img, (W / 2, y0 - 130), a["kicker"], 40, t, 0, fill=GOLD, w="Bold")
     if a.get("logo"):
         logo(img, a["logo"], W / 2, y0 - 215, 330, t, 0, plate=a.get("plate"), maxh=120)
+
+def k_photo(img, t, dur, a):
+    if a.get("logo"): logo(img, a["logo"], W / 2, a.get("ly", 640), a.get("lw", 300), t, 0.15, plate=(250, 250, 252), maxh=130)
+    lines = a.get("lines", [])
+    for i, ln in enumerate(lines):
+        s_, col = (ln, INK) if isinstance(ln, str) else ln
+        size = fit(s_, a.get("size", 110), W - 200)
+        y = a.get("y", 800) - (len(lines) - 1 - i) * 125
+        lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); ld = ImageDraw.Draw(lay)
+        p = back((t - 0.1 - i * 0.2) / 0.35)
+        if p <= 0: continue
+        ld.text((W / 2, y + 30 * (1 - clamp(p))), s_, font=F(int(size * (0.8 + 0.2 * clamp(p)))), fill=col + (int(255 * clamp(p * 1.4)),), anchor="mm", stroke_width=8, stroke_fill=(0, 0, 0, int(255 * clamp(p))))
+        img.alpha_composite(lay)
 
 def k_count(img, t, dur, a):
     d = ImageDraw.Draw(img)
@@ -508,7 +569,7 @@ for s in S:
 
 def render_frame(s, f):
     T = f / FPS; t = T - s["t0"]; dur = s["t1"] - s["t0"]
-    img = bg(s["bg"], T).convert("RGBA")
+    img = bg_scene(s["bg"], T, t, dur).convert("RGBA")
     KINDS[s["kind"]](img, t, dur, s["a"])
     # flash in on chapter cards, small fade-in on others
     if s["kind"] == "chapter" and t < 0.15:
