@@ -66,9 +66,10 @@ VIDEO_DIR=work python3 bom-media/pipeline/render.py render 2
 Check: no text outside the frame or under the captions (keep content above y≈900), numbers correct, logos visible.
 
 ## 8. Thumbnail + music
-- ElevenLabs `creative_generate_image`, model `gpt-image-2`, 2 variations, prompt from the handbook template
-  (one subject + emotion, 2–3 words huge yellow with thick black outline top-left, bottom-right 15 % empty, no real people's faces,
-  no fake logos). Pick the best, save as `work/thumb.png` and a JPG ≤ 2 MB.
+- Thumbnail in the SAME design as the video (owner request 2026-11-04 — no AI images): write `work/thumb_spec.json`
+  and run `VIDEO_DIR=work python3 bom-media/pipeline/thumb.py work/thumb_spec.json` (see the docstring for the format).
+  Real company logo(s) on white plates, WHITE text with black outline, gold question marks, a question/curiosity line,
+  bottom-right corner empty. Make 2 layouts, look at both with Read, pick the best. Costs no credits.
 - New music each video: `creative_generate_in_flow` node_type `music`, model `eleven_music_v2_5`, generations_count 1,
   "Instrumental only, no vocals … documentary underscore … sits under narration, ~3 minutes" with a mood that fits the story.
   Download to `work/music.mp3`.

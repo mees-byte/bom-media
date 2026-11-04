@@ -14,3 +14,4 @@
 - 2026-11-04: Don't put quote marks around a company promise unless the exact words are sourced.
 - 2026-11-04: Don't transcribe the music to check for vocals (costs ~1.2k credits); the "Instrumental only, no vocals" prompt was reliable.
 - 2026-11-04: vidIQ credits are limited (150/month). Max 1 vidIQ call per trend run, none in evergreen runs; weekly review max 2 calls. Use WebSearch + Metricool analytics first.
+- 2026-11-04: Thumbnails = same design as the video (pipeline/thumb.py): company logo on white plate, WHITE text, question marks. Owner disliked the AI-generated vault thumbnails. Owner picked the dark "WHO STOLE $6.3 BILLION?" layout over a red one.
