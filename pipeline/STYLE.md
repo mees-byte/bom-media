@@ -3,7 +3,8 @@
 - 2026-11-03: Voice = Arthur (C1npRmjB19a6yNkEucvx) on eleven_v4 with delivery tags. Owner found multilingual_v2 too slow; v4 + tags = faster, more conviction.
 - 2026-11-03: 480–520 words ≈ 3:15–3:30 with v4. 536 words gave 3:28.
 - 2026-11-03: Real company logos on white plates instead of brand names as text (owner request).
-- 2026-11-03: Every scene starts with a short zoom punch + slow push-in; soft whoosh on every cut, harder on chapters, impact on big numbers.
+- 2026-11-03: Every scene starts with a short zoom punch + slow push-in; impact sound on big numbers.
+- 2026-11-04: NO whoosh/sweep sound on scene changes or chapters (owner found it annoying). Removed from mix.py.
 - 2026-11-03: Never use invented chart data; without real numbers use a text animation.
 - 2026-11-03: Keep on-screen content above y≈900 so it never collides with the captions.
 - 2026-11-04: Wikimedia rate-limits (429) after ~4 quick downloads, for a long time. Download ALL logos first, one per ~10 s, before anything else; use direct md5 upload paths, not the API search.

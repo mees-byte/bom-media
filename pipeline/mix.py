@@ -35,7 +35,8 @@ fc = [f"[1:a]adelay=1000|1000,apad=whole_dur={D},asplit=2[v][vsc]",
       f"[2:a]atrim=0:{D},volume=0.24,volume='if(between(t,{twist-0.2},{twist+2.2}),0.15,1)':eval=frame,afade=t=in:d=0.5,afade=t=out:st={D-3}:d=3[m0]",
       "[m0][vsc]sidechaincompress=threshold=0.04:ratio=6:attack=20:release=400[m]"]
 mix = []; k = 3
-for t, vol, f in [(x, 0.5, "whoosh") for x in ch] + [(x, 0.18, "whoosh") for x in cuts] + [(x, 0.45, "impact") for x in im]:
+# no whoosh on cuts/chapters (owner request 2026-11-04); only impacts on big numbers
+for t, vol, f in [(x, 0.45, "impact") for x in im]:
     inputs += ["-i", os.path.join(A, f + ".mp3")]
     ms = max(0, int(t * 1000 - (200 if f == "whoosh" else 0)))
     fc.append(f"[{k}:a]volume={vol},adelay={ms}|{ms}[x{k}]"); mix.append(f"[x{k}]"); k += 1
