@@ -13,3 +13,4 @@
 - 2026-11-04: count kind with logo + kicker used to overlap the number; fixed in render.py (number moved down). Check one count frame anyway.
 - 2026-11-04: Don't put quote marks around a company promise unless the exact words are sourced.
 - 2026-11-04: Don't transcribe the music to check for vocals (costs ~1.2k credits); the "Instrumental only, no vocals" prompt was reliable.
+- 2026-11-04: vidIQ credits are limited (150/month). Max 1 vidIQ call per trend run, none in evergreen runs; weekly review max 2 calls. Use WebSearch + Metricool analytics first.

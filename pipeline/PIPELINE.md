@@ -14,8 +14,11 @@ anything that fails the fact check. Talk to the owner in **Dutch**.
    `🎬 Nieuwe video wordt nu gemaakt en gerenderd voor <dag datum> 17:00 — onderwerp: <onderwerp>.`
 
 ## 1. Topic (trend slots)
-- vidIQ `vidiq_keyword_research` mode `rising`, niche "business scandals, company collapses, stock market, billionaires", period week;
-  plus WebSearch for the biggest business/markets news of the last 48 hours.
+- **vidIQ credits are scarce (150/month, free plan). Budget: at most ONE vidIQ call per trend run, zero in evergreen (Wednesday) runs.**
+  First call `vidiq_balance` (free). Only if `totalCredits` ≥ 30: one `vidiq_keyword_research` mode `rising`, niche
+  "business scandals, company collapses, stock market, billionaires", period week. Below 30: skip vidIQ (the weekly review needs it).
+- Always: WebSearch for the biggest business/markets news of the last 48 hours, and check search demand by WebSearch / YouTube
+  search suggestions instead of extra vidIQ calls. Never use other paid vidIQ tools (titles, thumbnails, scripts, scoring) in this pipeline.
 - Pick a story with a clear conflict, a big number and a twist. Check search demand.
 - Never: Anthropic (we can't be independent), partisan/election politics, personal investment advice, unconfirmed allegations.
 - Don't repeat a topic from the SCHEDULE log within 8 weeks.
