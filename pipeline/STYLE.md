@@ -37,3 +37,4 @@
 - 2026-11-04: Pixabay clip search often returns cheap CGI (cartoon coins, green 3D bars) or off-topic clips: always look at a frame and drop weak ones; 3 strong clips beat 6 weak ones.
 - 2026-11-04: The `media` branch is shared by parallel runs: only `git rm` YOUR OWN files (same date-slug), never `*.mp4`. (A Blockbuster file was removed by mistake once and restored.)
 - 2026-11-04: Owner called the Binance v5 "perfect": Pixabay photo backgrounds on ~2/3 of the scenes + 2 bright photo breaks + b-roll clips, chapters plain. Reference: examples/binance/scenes.py. Match photo to claim (no bitcoin coin behind an XRP/ETH number).
+- 2026-11-04: Channel is phone-verified; custom thumbnails must always be set (first video lost its thumbnail before verification).

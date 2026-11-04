@@ -106,6 +106,8 @@ Check: no text outside the frame or under the captions (keep content above y≈9
    text = long SEO description (≥ 1,500 chars: hook sentences, "In this animated explainer…", What you'll learn, Sources, Chapters
    from the chapter scene times + 1 s, "Not financial advice. For education only.", credits, exactly 3 hashtags).
    If the thumbnail is rejected (VIDEO_THUMBNAIL_NOT_APPLICABLE), retry once without videoThumbnailUrl.
+   The channel is phone-verified (2026-11-04), so custom thumbnails are allowed. If after publishing Metricool reports
+   "Could not upload video thumbnail", set it with vidIQ `vidiq_update_video_thumbnail` on the new video ID and tell the owner.
 3. Metricool copies the media to its own storage (the response shows static.metricool.com URLs). Nothing to clean up — the next run overwrites the `media` branch.
 
 ## 10. Short (only in the Sunday and Tuesday runs, i.e. for Monday/Wednesday videos)
