@@ -40,6 +40,9 @@ for t, vol, f in [(x, 0.45, "impact") for x in im]:
     inputs += ["-i", os.path.join(A, f + ".mp3")]
     ms = max(0, int(t * 1000 - (200 if f == "whoosh" else 0)))
     fc.append(f"[{k}:a]volume={vol},adelay={ms}|{ms}[x{k}]"); mix.append(f"[x{k}]"); k += 1
+if os.path.exists("sfx.wav") and os.environ.get("SFX", "1") != "0":   # light attention SFX from pipeline/sfx.py
+    inputs += ["-i", "sfx.wav"]
+    fc.append(f"[{k}:a]volume={os.environ.get('SFX_VOL', '0.55')},apad=whole_dur={D}[x{k}]"); mix.append(f"[x{k}]"); k += 1
 fc.append("[v][m]" + "".join(mix) + f"amix=inputs={2+len(mix)}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11,volume=2dB,alimiter=limit=0.89[a]")
 run(["ffmpeg", "-y", "-v", "error"] + inputs + ["-filter_complex", ";".join(fc), "-map", "0:v", "-map", "[a]", "-c:v", "copy",
      "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", "VIDEO.mp4"])
