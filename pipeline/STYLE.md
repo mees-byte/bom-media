@@ -6,3 +6,9 @@
 - 2026-11-03: Every scene starts with a short zoom punch + slow push-in; soft whoosh on every cut, harder on chapters, impact on big numbers.
 - 2026-11-03: Never use invented chart data; without real numbers use a text animation.
 - 2026-11-03: Keep on-screen content above y≈900 so it never collides with the captions.
+- 2026-11-04: Wikimedia rate-limits (429) after ~4 quick downloads, for a long time. Download ALL logos first, one per ~10 s, before anything else; use direct md5 upload paths, not the API search.
+- 2026-11-04: Force-pushing the `media` branch is blocked in automated runs. Instead: `git fetch origin media`, worktree on origin/media, `git rm` old files, add new ones, normal commit + push. raw URLs still work.
+- 2026-11-04: mix.py chdirs into VIDEO_DIR — pass ABSOLUTE paths for thumb and music.
+- 2026-11-04: count kind with logo + kicker used to overlap the number; fixed in render.py (number moved down). Check one count frame anyway.
+- 2026-11-04: Don't put quote marks around a company promise unless the exact words are sourced.
+- 2026-11-04: Don't transcribe the music to check for vocals (costs ~1.2k credits); the "Instrumental only, no vocals" prompt was reliable.

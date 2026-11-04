@@ -207,13 +207,14 @@ def k_count(img, t, dur, a):
     p = ease(t / min(1.4, dur * 0.6))
     v = a["v"] * p
     s = a["fmt"](v) if "fmt" in a else money(v)
-    if a.get("logo"): logo(img, a["logo"], W / 2, 270, 380, t, 0, plate=a.get("plate"), maxh=150)
+    both = a.get("logo") and a.get("kicker")   # logo + kicker: push the number down so they never overlap
+    if a.get("logo"): logo(img, a["logo"], W / 2, 220 if both else 270, 380, t, 0, plate=a.get("plate"), maxh=130 if both else 150)
     elif a.get("kicker"): slide_text(img, (W / 2, 300), a["kicker"], 46, t, 0, fill=MUT, w="Bold")
-    if a.get("logo") and a.get("kicker"): slide_text(img, (W / 2, 400), a["kicker"], 40, t, 0.2, fill=MUT, w="Bold")
-    size = fit(a["fmt"](a["v"]) if "fmt" in a else money(a["v"]), 230, W - 240)
+    if both: slide_text(img, (W / 2, 365), a["kicker"], 40, t, 0.2, fill=MUT, w="Bold")
+    size = fit(a["fmt"](a["v"]) if "fmt" in a else money(a["v"]), 210 if both else 230, W - 240)
     shake = (random.Random(int(t * 60)).randint(-8, 8) if 1.35 < t < 1.6 else 0)
-    text(d, (W / 2 + shake, 520), s, size, fill=a.get("col", GOLD))
-    if a.get("label"): slide_text(img, (W / 2, 700), a["label"], 54, t, 0.5, w="Bold")
+    text(d, (W / 2 + shake, 560 if both else 520), s, size, fill=a.get("col", GOLD))
+    if a.get("label"): slide_text(img, (W / 2, 740 if both else 700), a["label"], 54, t, 0.5, w="Bold")
 
 def k_date(img, t, dur, a):
     d = ImageDraw.Draw(img)
