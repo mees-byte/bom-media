@@ -118,7 +118,7 @@ Check: no text outside the frame or under the captions (keep content above y≈9
   Start on a sentence, end on a cliffhanger/question. Hook = short, punchy, true (number or twist), e.g. "BLOCKBUSTER ACTUALLY BEAT NETFLIX".
   Prefer: the twist, a big number, the "what does this mean for YOUR money" moment. Never reuse a segment already used as a Short.
 - Write `work/upload/SHORTS - <topic>.txt` with per Short: title (#shorts), description ending with "Full story on the channel: <long title>",
-  4 hashtags, 6 tags, related video = the long video, suggested times 09:00 / 13:00 / 21:00 NL on the day after the long video.
+  4 hashtags, 6 tags, related video = the long video, publish the 3 Shorts on the SAME DAY the long video goes live, AFTER it: 18:00 / 20:00 / 22:00 Europe/Amsterdam (owner choice 2026-11-05).
 - **Upload (0 credits, no Metricool):** push the 3 mp4s to the `media` branch, then in the built-in browser (YouTube Studio, owner is signed in)
   open `studio.youtube.com/channel/UC9XemljFJXqS7VdjXSOcefg/videos/upload?d=ud`, inject the file with javascript_tool
   (fetch commit-pinned raw URL → File → DataTransfer → `ytcp-uploads-file-picker input[type=file]`, dispatch change).

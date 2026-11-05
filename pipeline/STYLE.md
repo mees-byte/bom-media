@@ -41,3 +41,4 @@
 - 2026-11-04: Shorts are cut from the finished long video (0 credits). Channel handle on Shorts = @thebilliondollarmistakestv. Pick a segment that starts on a sentence/chapter and ends on a cliffhanger; check with a frame sheet.
 
 - 2026-11-05: Shorts: owner wants 3 NEW Shorts per long video, short punchy hooks. Metricool free plan only for long videos; owner uploads Shorts himself — send him the 3 files + SHORTS txt. See PIPELINE §10.
+- 2026-11-05: Owner wants the 3 Shorts uploaded the SAME DAY the long video goes live (18:00/20:00/22:00 NL, after the 17:00 video).
