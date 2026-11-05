@@ -119,7 +119,13 @@ Check: no text outside the frame or under the captions (keep content above y≈9
   Prefer: the twist, a big number, the "what does this mean for YOUR money" moment. Never reuse a segment already used as a Short.
 - Write `work/upload/SHORTS - <topic>.txt` with per Short: title (#shorts), description ending with "Full story on the channel: <long title>",
   4 hashtags, 6 tags, related video = the long video, suggested times 09:00 / 13:00 / 21:00 NL on the day after the long video.
-- **Send the 3 mp4s + the txt to the owner with SendUserFile** (Dutch message). He uploads them in YouTube Studio himself.
+- **Upload (0 credits, no Metricool):** push the 3 mp4s to the `media` branch, then in the built-in browser (YouTube Studio, owner is signed in)
+  open `studio.youtube.com/channel/UC9XemljFJXqS7VdjXSOcefg/videos/upload?d=ud`, inject the file with javascript_tool
+  (fetch commit-pinned raw URL → File → DataTransfer → `ytcp-uploads-file-picker input[type=file]`, dispatch change).
+  Set title/description with a real click on the field, then `execCommand('selectAll')` + `insertText` (plain typing right after upload garbles).
+  "Not made for kids", tags via typing + Enter, then Plannen: date + time (click the time box, ctrl+a, type HH:MM, Enter). NEVER press Escape (closes the dialog).
+  Related video needs a one-time channel verification the owner must do — skip until then.
+- If the desktop app / browser is offline: send the 3 mp4s + the txt to the owner with SendUserFile (Dutch) so he uploads himself.
 
 ## 11. Finish
 - Append to `pipeline/SCHEDULE.md` log: date, slot, title, topic, Metricool plannerUrl, credits used. Commit + push (never commit work/).
