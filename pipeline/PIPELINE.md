@@ -110,12 +110,16 @@ Check: no text outside the frame or under the captions (keep content above y≈9
    "Could not upload video thumbnail", set it with vidIQ `vidiq_update_video_thumbnail` on the new video ID and tell the owner.
 3. Metricool copies the media to its own storage (the response shows static.metricool.com URLs). Nothing to clean up — the next run overwrites the `media` branch.
 
-## 10. Short (only in the Sunday and Tuesday runs, i.e. for Monday/Wednesday videos)
-- Metricool free plan = 20 posts per calendar month. Count this month's posts with `getScheduledPosts` + the SCHEDULE log;
-  only make the Short if fewer than 19 are used.
-- `python3 bom-media/pipeline/shorts.py work/VIDEO.mp4 <start> <20–30 s> "<hook ≤ 6 words>" work/short.mp4` — pick the strongest
-  "what does this mean for YOUR money" or twist moment. Schedule as youtube type `short` the day after the long video at 17:00,
-  title with #shorts, text ending with the long video title.
+## 10. Shorts — 3 per long video, owner uploads them himself (owner choice 2026-11-05)
+- Metricool free plan (20 posts/month) is reserved for the LONG videos. Do NOT schedule Shorts in Metricool anymore.
+- For EVERY new long video cut **3 new Shorts** (20–30 s each) with `pipeline/shorts.py`, 0 credits:
+  `python3 bom-media/pipeline/shorts.py work/VIDEO.mp4 <start> <dur> "<hook ≤ 6 words>" work/short_N.mp4`.
+  Find exact start/end with caption strips (crop y 860–1060 of the long video, fps 2, tile) — word-position estimates run ~2–3 s early.
+  Start on a sentence, end on a cliffhanger/question. Hook = short, punchy, true (number or twist), e.g. "BLOCKBUSTER ACTUALLY BEAT NETFLIX".
+  Prefer: the twist, a big number, the "what does this mean for YOUR money" moment. Never reuse a segment already used as a Short.
+- Write `work/upload/SHORTS - <topic>.txt` with per Short: title (#shorts), description ending with "Full story on the channel: <long title>",
+  4 hashtags, 6 tags, related video = the long video, suggested times 09:00 / 13:00 / 21:00 NL on the day after the long video.
+- **Send the 3 mp4s + the txt to the owner with SendUserFile** (Dutch message). He uploads them in YouTube Studio himself.
 
 ## 11. Finish
 - Append to `pipeline/SCHEDULE.md` log: date, slot, title, topic, Metricool plannerUrl, credits used. Commit + push (never commit work/).

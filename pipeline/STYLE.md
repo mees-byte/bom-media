@@ -39,3 +39,5 @@
 - 2026-11-04: Owner called the Binance v5 "perfect": Pixabay photo backgrounds on ~2/3 of the scenes + 2 bright photo breaks + b-roll clips, chapters plain. Reference: examples/binance/scenes.py. Match photo to claim (no bitcoin coin behind an XRP/ETH number).
 - 2026-11-04: Channel is phone-verified; custom thumbnails must always be set (first video lost its thumbnail before verification).
 - 2026-11-04: Shorts are cut from the finished long video (0 credits). Channel handle on Shorts = @thebilliondollarmistakestv. Pick a segment that starts on a sentence/chapter and ends on a cliffhanger; check with a frame sheet.
+
+- 2026-11-05: Shorts: owner wants 3 NEW Shorts per long video, short punchy hooks. Metricool free plan only for long videos; owner uploads Shorts himself — send him the 3 files + SHORTS txt. See PIPELINE §10.

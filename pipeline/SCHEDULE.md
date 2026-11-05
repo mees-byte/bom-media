@@ -1,7 +1,7 @@
 # SCHEDULE — Billion Dollar Mistakes
 
 Long videos: Mon / Wed / Fri 17:00 Europe/Amsterdam. Wed = evergreen, Mon/Fri = trend.
-Shorts: Tue / Thu 17:00 (from Mon / Wed video), max 20 Metricool posts per month (free plan).
+Shorts: 3 per long video, cut by the pipeline and uploaded by the owner himself (not via Metricool; free plan = long videos only).
 
 ## Evergreen queue (Wednesday)
 1. [Rise & Ruin] FTX: how a $32 billion exchange vanished in a week
@@ -20,3 +20,4 @@ Shorts: Tue / Thu 17:00 (from Mon / Wed video), max 20 Metricool posts per month
 | 2026-11-04 | Fri 2026-11-06 17:00 (trend) | Binance Hacked: How $6.3 Billion Vanished in 20 Minutes | Binance $6.3B hack (Oct 29, 2026) | https://app.metricool.com/planner/calendar?blogId=7850889&openWithPostUuid=8112950505278361060 | ElevenLabs ≈5.7k credits (voice 3.3k, music 0.9k, 2 thumbs 0.4k, music-vocal check 1.2k); vidIQ 10. Fact check PASS on 2nd pass. No Short (Wed run). Updated same day: whoosh removed + new thumbnail (thumb.py). Circle logo unavailable (Wikimedia 429) → name as text in 1 scene |
 | 2026-11-04 | Thu 2026-11-05 17:00 (Short) | Blockbuster Could Have Bought Netflix for $50 Million #shorts | Blockbuster hook 0:01–0:23 | https://app.metricool.com/planner/calendar?blogId=7850889&openWithPostUuid=-4115146372792301080 | cut from live video with shorts.py, 0 credits |
 | 2026-11-04 | Sat 2026-11-07 17:00 (Short) | Binance Was Hacked for $6.3B. Then Crypto Hit the Brakes #shorts | Binance "The Freeze" 1:37–2:03 | https://app.metricool.com/planner/calendar?blogId=7850889&openWithPostUuid=-9205790418428411464 | cut from scheduled video with shorts.py, 0 credits |
+| 2026-11-05 | (owner uploads, suggested Fri 6 Nov 09:00/13:00/21:00) | 3 Blockbuster Shorts: Total Access 1:35–1:57, Bonus 1:58–2:27, Late fees 0:40–1:00 | Blockbuster | — (manual upload) | 0 credits. 3 extra cuts on media branch (2026-11-blockbuster-short-2/5/6) unused |
