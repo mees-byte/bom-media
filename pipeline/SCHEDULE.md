@@ -2,6 +2,7 @@
 
 Long videos: Mon / Wed / Fri 17:00 Europe/Amsterdam. Wed = evergreen, Mon/Fri = trend.
 Shorts: 3 per long video, cut by the pipeline and uploaded by the owner himself (not via Metricool; free plan = long videos only).
+TikTok: 3 per long video (1 main 61–90 s + 2 short), 1 per day, delivered daily to the owner, he posts them himself (PIPELINE §10b).
 
 ## Evergreen queue (Wednesday)
 1. [Rise & Ruin] FTX: how a $32 billion exchange vanished in a week
@@ -12,6 +13,14 @@ Shorts: 3 per long video, cut by the pipeline and uploaded by the owner himself 
 6. [One Bet, Millions] Yahoo turned down buying Google (and later Facebook)
 7. [Rise & Ruin] Enron: the smartest guys in the room
 8. [Rise & Ruin] Theranos: the $9 billion blood test that never worked
+
+## TikTok queue (1 per day, owner uploads himself — delivered daily by "BDM TikTok van de dag")
+Files on the `media` branch. Status: queued → sent (set by the daily task).
+| Post date | File | Hook | Caption | Status |
+|---|---|---|---|---|
+| 2026-11-06 | 2026-11-06-tiktok-binance-heist.mp4 | ROBBED WITHOUT BREAKING THE DOOR | Hackers took $6.3 billion from Binance in 20 minutes — without breaking the door. Protection, or the end of what crypto promised? 👇 #money #finance #crypto #binance #business | queued |
+| 2026-11-07 | 2026-11-07-tiktok-blockbuster-comeback.mp4 | BLOCKBUSTER HAD NETFLIX BEATEN | Blockbuster actually had Netflix beaten in 2007. Then it threw the win away. Would you protect today's profits or fund the future? 👇 #money #business #finance #netflix #blockbuster | queued |
+| 2026-11-08 | 2026-11-08-tiktok-binance-getaway.mp4 | $2.4 BILLION NOBODY CAN FREEZE | $2.4 billion from the Binance hack can't be frozen. The FBI named the group behind it. Should exchanges be able to freeze money at all? 👇 #money #finance #crypto #binance #hack | queued |
 
 ## Log
 | Date | Slot | Title | Topic | Metricool | Notes |

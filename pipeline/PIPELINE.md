@@ -127,6 +127,23 @@ Check: no text outside the frame or under the captions (keep content above y≈9
   Related video needs a one-time channel verification the owner must do — skip until then.
 - If the desktop app / browser is offline: send the 3 mp4s + the txt to the owner with SendUserFile (Dutch) so he uploads himself.
 
+## 10b. TikTok — 1 per day, owner uploads himself (owner choice 2026-11-06)
+- Not via Metricool (free plan = long videos only). 0 credits: everything is cut from the finished long video.
+- For EVERY new long video cut **3 TikToks** with `pipeline/tiktok.py` (same look as Shorts, name under the video,
+  laid out for TikTok's UI, 0.4 s audio fade at the end):
+  `python3 bom-media/pipeline/tiktok.py work/VIDEO.mp4 <start> <dur> "<hook ≤ 6 words>" work/tt_N.mp4`
+  1. **Main TikTok, 61–90 s** (TikTok only pays for videos > 1 minute): a full mini-story, e.g. the trick/turn of the
+     story up to and including the dilemma + "Tell me in the comments". Must be > 60.5 s.
+  2. + 3. Two shorter ones (25–40 s): the twist / big number / "what does this mean for YOUR money".
+  Find exact cut points with caption strips (see §10). Start on a sentence, end on a question or cliffhanger.
+- One TikTok per day. Days per video: Mon video → Mon, Tue (+1 spare); Wed video → Wed, Thu (+1 spare); Fri video → Fri, Sat, Sun.
+  The main TikTok goes on the day the long video goes live. Spares fill any gap.
+- Push the 3 mp4s to the `media` branch as `<YYYY-MM-DD>-tiktok-<slug>.mp4` (date = the day it should be posted)
+  and add one row per TikTok to the **TikTok queue** in `SCHEDULE.md`: date, file, hook, caption.
+- Caption (TikTok, English): 1 punchy line + 1 question for comments, then 4–5 hashtags (#money #business #finance +
+  2 topic tags). No "#shorts", no YouTube mentions. Owner must switch on "AI-generated content" when posting.
+- Daily delivery to the owner is done by the scheduled task "BDM TikTok van de dag" (reads the queue).
+
 ## 11. Finish
 - Append to `pipeline/SCHEDULE.md` log: date, slot, title, topic, Metricool plannerUrl, credits used. Commit + push (never commit work/).
 - **Message the owner (Dutch)**: `✅ Ingepland: "<titel>" — <dag datum> 17:00. Thumbnail + link: <plannerUrl>`.
