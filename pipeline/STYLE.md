@@ -43,3 +43,4 @@
 - 2026-11-05: Shorts: owner wants 3 NEW Shorts per long video, short punchy hooks. Metricool free plan only for long videos; owner uploads Shorts himself — send him the 3 files + SHORTS txt. See PIPELINE §10.
 - 2026-11-05: Owner wants the 3 Shorts uploaded the SAME DAY the long video goes live (18:00/20:00/22:00 NL, after the 17:00 video).
 - 2026-11-06: Owner wants TikToks cut from the YouTube videos, ready every day; he uploads them himself. 3 per long video via pipeline/tiktok.py (main one > 60 s for TikTok payouts). See PIPELINE §10b.
+- 2026-11-06: Every TikTok gets its own cover via pipeline/tiktok_cover.py (different frame + text); two TikToks with the same first frame looked identical on the profile.

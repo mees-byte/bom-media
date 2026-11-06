@@ -136,6 +136,9 @@ Check: no text outside the frame or under the captions (keep content above y≈9
      story up to and including the dilemma + "Tell me in the comments". Must be > 60.5 s.
   2. + 3. Two shorter ones (25–40 s): the twist / big number / "what does this mean for YOUR money".
   Find exact cut points with caption strips (see §10). Start on a sentence, end on a question or cliffhanger.
+- **Every TikTok gets its own cover** (owner request 2026-11-06: two TikToks looked identical in the grid):
+  `python3 bom-media/pipeline/tiktok_cover.py work/VIDEO.mp4 <frame sec> work/tt_N.mp4 work/tt_N_final.mp4 "LINE|*GOLD LINE*|LINE" [crop box]`
+  Pick a different, strong graphic frame (big number, logo, chart) per TikTok; check the .jpg — nothing cut off. Deliver the _final file.
 - One TikTok per day. Days per video: Mon video → Mon, Tue (+1 spare); Wed video → Wed, Thu (+1 spare); Fri video → Fri, Sat, Sun.
   The main TikTok goes on the day the long video goes live. Spares fill any gap.
 - Push the 3 mp4s to the `media` branch as `<YYYY-MM-DD>-tiktok-<slug>.mp4` (date = the day it should be posted)

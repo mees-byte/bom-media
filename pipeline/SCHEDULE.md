@@ -18,10 +18,11 @@ TikTok: 3 per long video (1 main 61–90 s + 2 short), 1 per day, delivered dail
 Files on the `media` branch. Status: queued → sent (set by the daily task).
 | Post date | File | Hook | Caption | Status |
 |---|---|---|---|---|
-| 2026-11-06 | 2026-11-06-tiktok-binance-heist.mp4 | ROBBED WITHOUT BREAKING THE DOOR | Hackers took $6.3 billion from Binance in 20 minutes — without breaking the door. Protection, or the end of what crypto promised? 👇 #money #finance #crypto #binance #business | queued |
+| 2026-11-06 | 2026-11-06-tiktok-binance-heist.mp4 | ROBBED WITHOUT BREAKING THE DOOR | Hackers took $6.3 billion from Binance in 20 minutes — without breaking the door. Protection, or the end of what crypto promised? 👇 #money #finance #crypto #binance #business | sent 2026-11-06 (owner, with cover) |
 | 2026-11-07 | 2026-11-07-tiktok-blockbuster-comeback.mp4 | BLOCKBUSTER HAD NETFLIX BEATEN | Blockbuster actually had Netflix beaten in 2007. Then it threw the win away. Would you protect today's profits or fund the future? 👇 #money #business #finance #netflix #blockbuster | sent 2026-11-06 (owner posted it himself with 2 others) |
-| 2026-11-08 | 2026-11-08-tiktok-binance-getaway.mp4 | $2.4 BILLION NOBODY CAN FREEZE | $2.4 billion from the Binance hack can't be frozen. The FBI named the group behind it. Should exchanges be able to freeze money at all? 👇 #money #finance #crypto #binance #hack | queued |
+| 2026-11-08 | 2026-11-08-tiktok-binance-getaway.mp4 | $2.4 BILLION NOBODY CAN FREEZE | $2.4 billion from the Binance hack can't be frozen. The FBI named the group behind it. Should exchanges be able to freeze money at all? 👇 #money #finance #crypto #binance #hack | sent 2026-11-06 (owner, with cover) |
 | 2026-11-06 | (not on media branch) Blockbuster 0:01–1:23 "Netflix offered itself for $50 million" + Blockbuster 2:37–2:56 & 3:05–3:30 "It lost a fight it already won" | — | posted by owner himself | sent 2026-11-06 |
+| 2026-11-06 | (not on media branch) Binance 0:01–1:02 "$6.3 billion gone in 20 minutes" (opener, with cover) | — | posted by owner himself | sent 2026-11-06 |
 
 ## Log
 | Date | Slot | Title | Topic | Metricool | Notes |
