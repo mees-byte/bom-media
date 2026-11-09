@@ -32,7 +32,7 @@ for i, l in enumerate(lines):
     gold = l.startswith("*") and l.endswith("*")
     d.text((540, 170 + i * int(size * 1.16)), l.strip("*"), font=f, fill=GOLD if gold else "white",
            anchor="mt", stroke_width=10, stroke_fill="black")
-d.text((540, 1730), os.environ.get("TT_TAG", "MONEY UNDER FIRE"), font=ImageFont.truetype(FONT, 48), fill=GOLD,
+d.text((540, 1730), os.environ.get("TT_TAG", ""), font=ImageFont.truetype(FONT, 48), fill=GOLD,
        anchor="mt", stroke_width=5, stroke_fill="black")
 cover = os.path.splitext(tout)[0] + ".jpg"
 bg.save(cover, quality=92)
