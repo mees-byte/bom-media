@@ -5,7 +5,7 @@ Usage: python3 tiktok.py VIDEO.mp4 START_SEC DURATION_SEC "HOOK TEXT (max ~6 wor
 Default NAME = "BILLION DOLLAR MISTAKES". Use 60–90 s for the daily main TikTok (TikTok only pays for videos > 1 min)."""
 import subprocess, sys, textwrap
 src, start, dur, hook, out = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), sys.argv[4], sys.argv[5]
-name = sys.argv[6] if len(sys.argv) > 6 else "BILLION DOLLAR MISTAKES"
+name = sys.argv[6] if len(sys.argv) > 6 else "MONEY UNDER FIRE"  # channel renamed 2026-11-09
 FONT = "/usr/share/fonts/opentype/inter/InterDisplay-Black.otf"
 lines = textwrap.wrap(hook.upper(), 16)[:3]
 draw = []
