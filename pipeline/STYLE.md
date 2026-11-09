@@ -55,3 +55,4 @@
 - 2026-11-09: Shorts for this channel: render 16:9 with content inside the centre 1080 px, crop a 1080 square and place it on a 1080x1920 navy canvas with "SCAM FILES" header (see examples/ruf_scamfiles1_test).
 - 2026-11-09: Ask Mees before spending voice/music credits on test videos.
 - 2026-11-09: Owner decision: no separate channel for now. He is broadening Billion Dollar Mistakes (UC9XemljFJXqS7VdjXSOcefg, already linked in Metricool 7850889 + vidIQ) and testing the retirement topics (COLA video, Scam Files Short) on it this week. Do NOT upload them until he says so.
+- 2026-11-09: When a Shorts rule changes, also apply it to long videos that were ALREADY scheduled (Binance got only 1 Short because it was made before the 3-Shorts rule). YouTube Studio: to publish now pick Openbaar via tp-yt-paper-radio-button[name=PUBLIC]; dialog layout changes with window size, use refs not coordinates.
