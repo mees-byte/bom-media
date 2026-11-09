@@ -25,7 +25,7 @@ Files on the `media` branch. Status: queued → sent (set by the daily task).
 | 2026-11-06 | (not on media branch) Binance 0:01–1:02 "$6.3 billion gone in 20 minutes" (opener, with cover) | — | posted by owner himself | sent 2026-11-06 |
 | 2026-11-09 | 2026-11-09-tiktok-cola-raise-vs-deposit.mp4 (72 s, main) | YOUR RAISE ISN'T WHAT YOU GET | The 2027 Social Security raise is 3.6%, about $75 a month. But for millions on Medicare, roughly $68 may land in the bank. Did last year's raise feel like a raise? 👇 #money #finance #retirement #socialsecurity #medicare | queued (cover: YOUR $75 RAISE? ONLY ~$68 LANDS) |
 | 2026-11-10 | 2026-11-10-tiktok-cola-hold-harmless.mp4 (32 s) | THE RULE THAT PROTECTS YOUR CHECK | There's a rule that stops a higher Medicare premium from shrinking your Social Security check. Did you know it existed? 👇 #money #finance #retirement #socialsecurity #medicare | queued (cover: MEDICARE EATING YOUR RAISE? NOT SO FAST) |
-| spare | 2026-11-spare-tiktok-cola-read-this-line.mp4 (32 s) | READ THIS LINE FIRST | Your Social Security notice has one line that matters more than the big number. Who opens the letter in your house? 👇 #money #finance #retirement #socialsecurity #cola | spare (cover: SKIP THE BIG NUMBER READ THIS LINE) |
+| spare | 2026-11-spare-tiktok-cola-read-this-line.mp4 (32 s) | (no hook text) | Your Social Security notice has one line that matters more than the big number. Who opens the letter in your house? 👇 #money #finance #retirement #socialsecurity #cola | spare (cover: SKIP THE BIG NUMBER) |
 
 ## Log
 | Date | Slot | Title | Topic | Metricool | Notes |
