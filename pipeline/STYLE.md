@@ -44,3 +44,13 @@
 - 2026-11-05: Owner wants the 3 Shorts uploaded the SAME DAY the long video goes live (18:00/20:00/22:00 NL, after the 17:00 video).
 - 2026-11-06: Owner wants TikToks cut from the YouTube videos, ready every day; he uploads them himself. 3 per long video via pipeline/tiktok.py (main one > 60 s for TikTok payouts). See PIPELINE §10b.
 - 2026-11-06: Every TikTok gets its own cover via pipeline/tiktok_cover.py (different frame + text); two TikToks with the same first frame looked identical on the profile.
+
+## Retirement Under Fire (second channel, started 2026-11-09)
+- 2026-11-09: Test videos made: long "Social Security COLA 2027" (examples/ruf_cola_test) + Short "Scam Files #1" (examples/ruf_scamfiles1_test). Not published.
+- 2026-11-09: Owner wants Arthur (C1npRmjB19a6yNkEucvx) for this channel too, faster and punchier: delivery tags [intense]/[dramatically] in the hook, and the finished voice sped up 8 % with ffmpeg `atempo=1.08` (free).
+- 2026-11-09: Hook = a striking but TRUE comparison (e.g. Part B +9.7 % vs raise 2.8 % = "more than three times faster") on bright Pixabay photos ("pxb:" + kind pxcount). Never invent or exaggerate; projections are called projections.
+- 2026-11-09: Cheap fix for a weak hook: re-voice only the hook and splice it onto the existing narration (ffmpeg concat) instead of re-voicing the whole script (~700 vs ~4,700 credits).
+- 2026-11-09: Word timings for free: `python3 pipeline/align.py work` (faster-whisper small.en; needs `pip install faster-whisper "av<14"`), then `python3 pipeline/clean.py work` (merges "3" + ".6%"). No ElevenLabs transcription needed.
+- 2026-11-09: Calm palette for this channel: navy bg (BGS["navy"] in scenes.py), cream text, gold accent, no red. No government seals/logos (would look official — bad for a scam-warning channel).
+- 2026-11-09: Shorts for this channel: render 16:9 with content inside the centre 1080 px, crop a 1080 square and place it on a 1080x1920 navy canvas with "SCAM FILES" header (see examples/ruf_scamfiles1_test).
+- 2026-11-09: Ask Mees before spending voice/music credits on test videos.
