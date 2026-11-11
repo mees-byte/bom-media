@@ -62,3 +62,4 @@
 - 2026-11-11: Owner wants titles that pull older Americans in plain words ("This Social Security Mistake Can Cost You Thousands a Year"), not clever ones; thumbnails with ONE realistic older person (AI image the owner makes elsewhere) + our text overlay ("THIS MISTAKE?" + "-30% FOR LIFE"). Always show him script + thumbnail first; after he approves the test video, schedule the same day.
 - 2026-11-11: Hook rule: first 20–30 s = a new image every 1–3 s, bright Pixabay photos with one huge number each (kind pxcount), then the reassurance line. Owner called this video "mooi".
 - 2026-11-11: drawtext in shorts.py breaks on "%" in the hook text — avoid "%" in Short hooks (or escape it).
+- 2026-11-11: tiktok.py wraps hooks at 16 chars: keep hooks ≤ ~15 chars per line or they break mid-phrase ("CLAIMED TOO / EARLY? THERE'S A / FIX"). Avoid '%' in hooks.
