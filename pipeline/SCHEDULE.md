@@ -37,6 +37,7 @@ Files on the `media` branch. Status: queued → sent (set by the daily task).
 | spare | 2026-11-spare-tiktok-enron-your-401k.mp4 (34 s) | CHECK YOUR 401K | The rules can warn you. They can't force you to sell. How much of your 401(k) is in one company? 👇 #401k #retirement #money #finance #investing | spare (cover: IS YOUR 401K IN ONE STOCK?) |
 
 ## Ready to publish (waiting for a trigger)
+- **Wed 2026-11-18 17:00: "waiting for CMS" Part B video** — `pipeline/ready/partb_wait/` (fact check PASS 2026-11-17). Re-check CMS hasn't announced before publishing.
 - **2027 Medicare Part B premium** — `pipeline/ready/partb2027/` (script, FACTS, values.json with PROJECTIONS). Trigger: CMS publishes the official 2027 Part B premium (expected mid/late Nov 2026). Follow the checklist in SCRIPT.md, fill with `pipeline/fill.py`, publish the same day. Fact check PASS 2026-11-17 (on projections).
 
 ## Log
