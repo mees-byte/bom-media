@@ -1,0 +1,8 @@
+{
+  "_status": "PROJECTION (2026 Trustees Report) — replace with the official CMS numbers on announcement day; NET = 75 - increase, HH = increase / 0.036",
+  "PREMIUM":    {"num": "$209.50", "spoken": "two hundred nine dollars and fifty cents"},
+  "INCREASE":   {"num": "$6.60",   "spoken": "six dollars and sixty cents"},
+  "NET":        {"num": "$68",     "spoken": "sixty-eight dollars"},
+  "DEDUCTIBLE": {"num": "$292",    "spoken": "two hundred ninety-two dollars"},
+  "HH":         {"num": "$183",    "spoken": "one hundred eighty-three dollars"}
+}

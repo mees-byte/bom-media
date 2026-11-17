@@ -36,6 +36,9 @@ Files on the `media` branch. Status: queued → sent (set by the daily task).
 | 2026-11-17 | 2026-11-17-tiktok-enron-bargain.mp4 (33 s) | THE BOSS SAID BUY | Enron's chairman called the stock "an incredible bargain." According to a shareholder lawsuit, insiders had sold about $1 billion of stock. Would you have trusted your boss? 👇 #401k #retirement #money #finance #enron | queued (cover: BOSS SAID BUY INSIDERS SOLD $1 BILLION) |
 | spare | 2026-11-spare-tiktok-enron-your-401k.mp4 (34 s) | CHECK YOUR 401K | The rules can warn you. They can't force you to sell. How much of your 401(k) is in one company? 👇 #401k #retirement #money #finance #investing | spare (cover: IS YOUR 401K IN ONE STOCK?) |
 
+## Ready to publish (waiting for a trigger)
+- **2027 Medicare Part B premium** — `pipeline/ready/partb2027/` (script, FACTS, values.json with PROJECTIONS). Trigger: CMS publishes the official 2027 Part B premium (expected mid/late Nov 2026). Follow the checklist in SCRIPT.md, fill with `pipeline/fill.py`, publish the same day. Fact check PASS 2026-11-17 (on projections).
+
 ## Log
 | Date | Slot | Title | Topic | Metricool | Notes |
 |---|---|---|---|---|---|

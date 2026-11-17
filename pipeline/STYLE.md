@@ -63,3 +63,5 @@
 - 2026-11-11: Hook rule: first 20–30 s = a new image every 1–3 s, bright Pixabay photos with one huge number each (kind pxcount), then the reassurance line. Owner called this video "mooi".
 - 2026-11-11: drawtext in shorts.py breaks on "%" in the hook text — avoid "%" in Short hooks (or escape it).
 - 2026-11-11: tiktok.py wraps hooks at 16 chars: keep hooks ≤ ~15 chars per line or they break mid-phrase ("CLAIMED TOO / EARLY? THERE'S A / FIX"). Avoid '%' in hooks.
+- 2026-11-17: Channel data (1–17 Nov): only the COLA video works (91 engaged views, only one with suggested traffic). Off-lane topics ($90 check, 401(k), Binance, Blockbuster) get ~0 engaged views. Stay in the lane "a concrete dollar amount on YOUR Social Security/Medicare check"; prefer sequels to the COLA video. Long videos are still 3:30–4:00 — aim 6–8 min with the payoff in the first 20 s.
+- 2026-11-17: Number-dependent scripts: write NARRATION.template.txt with {{TOKENS}} + values.json (num + spoken), fill with pipeline/fill.py on the day the official number lands.
