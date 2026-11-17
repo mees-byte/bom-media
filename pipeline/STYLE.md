@@ -65,3 +65,7 @@
 - 2026-11-11: tiktok.py wraps hooks at 16 chars: keep hooks ≤ ~15 chars per line or they break mid-phrase ("CLAIMED TOO / EARLY? THERE'S A / FIX"). Avoid '%' in hooks.
 - 2026-11-17: Channel data (1–17 Nov): only the COLA video works (91 engaged views, only one with suggested traffic). Off-lane topics ($90 check, 401(k), Binance, Blockbuster) get ~0 engaged views. Stay in the lane "a concrete dollar amount on YOUR Social Security/Medicare check"; prefer sequels to the COLA video. Long videos are still 3:30–4:00 — aim 6–8 min with the payoff in the first 20 s.
 - 2026-11-17: Number-dependent scripts: write NARRATION.template.txt with {{TOKENS}} + values.json (num + spoken), fill with pipeline/fill.py on the day the official number lands.
+- 2026-11-17: ElevenLabs eleven_v4 accepts max 5,000 characters per generation — split longer scripts at a chapter boundary, generate both parts, concat with 0.6 s silence, then atempo 1.08. (A 6,983-char prompt failed.)
+- 2026-11-17: Free vocal check for AI music: run faster-whisper (small.en, vad_filter) over music.mp3 locally — 0 segments = no vocals. No ElevenLabs transcription credits needed.
+- 2026-11-17: Pixabay returns 429 after ~12 photo queries in a row; download in batches of ~10 with a pause, keep what you have.
+- 2026-11-17: Long videos for this channel now 6–7 min (payoff in first 20 s, link to the related earlier video in the first 30 s, "subscribe and I'll break it down the day it lands" promise).

@@ -37,7 +37,7 @@ Files on the `media` branch. Status: queued → sent (set by the daily task).
 | spare | 2026-11-spare-tiktok-enron-your-401k.mp4 (34 s) | CHECK YOUR 401K | The rules can warn you. They can't force you to sell. How much of your 401(k) is in one company? 👇 #401k #retirement #money #finance #investing | spare (cover: IS YOUR 401K IN ONE STOCK?) |
 
 ## Ready to publish (waiting for a trigger)
-- **Wed 2026-11-18 17:00: "waiting for CMS" Part B video** — `pipeline/ready/partb_wait/` (fact check PASS 2026-11-17). Re-check CMS hasn't announced before publishing.
+- **DONE (scheduled Wed 18 Nov 17:00): "waiting for CMS" Part B video** — `pipeline/examples/partb_wait/` (fact check PASS 2026-11-17). Re-check CMS hasn't announced before publishing.
 - **2027 Medicare Part B premium** — `pipeline/ready/partb2027/` (script, FACTS, values.json with PROJECTIONS). Trigger: CMS publishes the official 2027 Part B premium (expected mid/late Nov 2026). Follow the checklist in SCRIPT.md, fill with `pipeline/fill.py`, publish the same day. Fact check PASS 2026-11-17 (on projections).
 
 ## Log
@@ -57,3 +57,5 @@ Files on the `media` branch. Status: queued → sent (set by the daily task).
 | 2026-11-16 | Mon 16 Nov 17:00 (Metricool) | Their Boss Called the Stock a Bargain. Then Their 401(k) Got Locked. | Enron 401(k) lockdown | https://app.metricool.com/planner/calendar?blogId=7850889&openWithPostUuid=-5908936530696125383 | Frank AI thumbnail (owner, use.ai) "LOCKED OUT." ~3,600 ElevenLabs credits |
 | 2026-11-16 | Mon 16 Nov 18:00 / 20:00 / 22:00 (Shorts, Metricool) | Their 401(k) Got Locked / Enron's Boss Called the Stock an Incredible Bargain / Locked Out of Their 401(k) While the Stock Crashed | Enron: 1.0+18.6, 65.7+24.7, 101.7+44.3 | uuids -9135621654596334219 / -7614959880621242865 / 6868170850695594282 | 0 credits |
 | 2026-11-16 | TikTok (owner posts) | 3 Enron TikToks (from v2): main = hook 0:00–0:19 + 1:34–2:26 + comment question 3:33–3:38 spliced, bargain 0:58–1:31, your 401k 3:05–3:38 | Enron 401(k) | — | 0 credits |
+| 2026-11-17 | Wed 18 Nov 17:00 (Metricool) | Medicare's 2027 Premium Drops Any Day. 4 Things That Matter More | 2027 Part B, waiting for CMS (forecast misses, IRMAA 2025 lookback, hold-harmless catch-up, Medicare Savings Programs) | https://app.metricool.com/planner/calendar?blogId=7850889&openWithPostUuid=745591846127157635 | 6:26. ~6,980 ElevenLabs credits voice (2 parts, 5,000-char limit) + 900 music. Fact check PASS. Stock thumbnail (taxform photo) — swap for owner's AI photo if he sends one. Points to COLA video. |
+| 2026-11-17 | Wed 18 Nov 18:00 / 20:00 / 22:00 (Shorts, Metricool) | Medicare's Premium Forecast Was Wrong Before / Your 2025 Taxes Set Your 2027 Medicare Bill / Your State Can Pay Your Medicare Premium | partb_wait: 66.5+29.1, 125.6+38.0, 278.4+41.8 | uuids 7996493665792052977 / -164820596086914327 / -8897268761476971197 | 0 credits |
