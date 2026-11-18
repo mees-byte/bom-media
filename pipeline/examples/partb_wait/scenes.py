@@ -13,15 +13,32 @@ def k_four(img, t, dur, a):
         d.text((480, y), s_, font=F(64), fill=CREAM + (al,), anchor="lm"); img.alpha_composite(lay)
 
 def k_linkvid(img, t, dur, a):
-    p = back(t / 0.4); lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay); al = int(255 * clamp(p))
-    d.rounded_rectangle([460, 260, 1460, 700], 30, fill=(250, 247, 238, al))
-    d.rounded_rectangle([500, 300, 900, 525], 18, fill=(12, 26, 60, al)); d.text((700, 412), "$75?", font=F(110), fill=ACC + (al,), anchor="mm")
-    d.text((940, 340), "FULL BREAKDOWN:", font=F(40, "Bold"), fill=(90, 100, 130, al), anchor="lm")
-    d.text((940, 410), "YOUR 2027 RAISE", font=F(56), fill=(15, 22, 45, al), anchor="lm")
-    d.text((940, 475), "vs. THE PREMIUM", font=F(56), fill=(15, 22, 45, al), anchor="lm")
-    d.text((960, 620), "▶  LINKED ON SCREEN  ↗", font=F(48), fill=TEAL + (al,), anchor="mm")
+    """real thumbnail of the COLA video, big in the top-right, with a 'watch' pointer (YouTube card links to it)"""
+    th = Image.open(os.path.join(ROOT, "px", "cola_thumb.jpg")).convert("RGB")
+    p = back(t / 0.45); sc_ = 0.85 + 0.15 * clamp(p)
+    w = int(1040 * sc_); h = int(w * 9 / 16)
+    x1, y0 = 1860, 70; x0 = x1 - w
+    lay = Image.new("RGBA", img.size, (0, 0, 0, 0)); d = ImageDraw.Draw(lay); al = int(255 * clamp(p))
+    d.rounded_rectangle([x0 - 12, y0 - 12, x1 + 12, y0 + h + 12], 26, fill=(255, 255, 255, al))
     img.alpha_composite(lay)
-    slide_text(img, (W / 2, 820), a.get("label", "THIS VIDEO: WHAT THAT ONE DIDN'T COVER"), 50, t, 0.8, fill=ACC)
+    if p > 0.05:
+        tm = th.resize((w, h), Image.LANCZOS).convert("RGBA"); tm.putalpha(al)
+        mask = Image.new("L", (w, h), 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, w, h], 18, fill=al)
+        img.paste(tm, (x0, y0), mask)
+        lay2 = Image.new("RGBA", img.size, (0, 0, 0, 0)); d2 = ImageDraw.Draw(lay2)
+        cx, cy = x1 - 130, y0 + h - 95
+        d2.rounded_rectangle([cx - 85, cy - 60, cx + 85, cy + 60], 30, fill=(255, 0, 0, int(al * 0.92)))
+        d2.polygon([(cx - 26, cy - 34), (cx - 26, cy + 34), (cx + 38, cy)], fill=(255, 255, 255, al))
+        img.alpha_composite(lay2)
+    slide_text(img, (x0 + w / 2, y0 + h + 70), "YOUR 2027 SOCIAL SECURITY RAISE IS 3.6%", 44, t, 0.4, fill=CREAM)
+    slide_text(img, (430, 250), "FULL BREAKDOWN", 60, t, 0.5, fill=ACC)
+    slide_text(img, (430, 330), "RAISE vs. PREMIUM", 54, t, 0.7, fill=CREAM)
+    if t > 0.9:
+        q = ease((t - 0.9) / 0.5); d3 = ImageDraw.Draw(img); xe = 600 + (x0 - 70 - 600) * q
+        d3.line([(560, 430), (xe, 430)], fill=ACC, width=14)
+        if q > 0.95: d3.polygon([(x0 - 70, 400), (x0 - 20, 430), (x0 - 70, 460)], fill=ACC)
+    slide_text(img, (430, 540), "▶ WATCH IT NEXT", 50, t, 1.3, fill=(120, 220, 160))
+    slide_text(img, (W / 2, 830), a.get("label", "THIS VIDEO: WHAT THAT ONE DIDN'T COVER"), 50, t, 1.6, fill=ACC)
 
 def k_forecast(img, t, dur, a):
     """real forecast vs actual Part B premium (Trustees forecast vs CMS final)"""

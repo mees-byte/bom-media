@@ -70,3 +70,4 @@
 - 2026-11-17: Pixabay returns 429 after ~12 photo queries in a row; download in batches of ~10 with a pause, keep what you have.
 - 2026-11-17: Long videos for this channel now 6–7 min (payoff in first 20 s, link to the related earlier video in the first 30 s, "subscribe and I'll break it down the day it lands" promise).
 - 2026-11-18: Owner: long videos of 6+ minutes get 6 Shorts — 3 on release day (18/20/22) and 3 the next day (18/20/22). Never start a Short on a count-up animation; freeze the first second on the finished number.
+- 2026-11-18: Owner: references to an earlier video use that video's REAL YouTube thumbnail (https://i.ytimg.com/vi/<id>/maxresdefault.jpg), big in the top-right with a small play button in its corner (not over the thumbnail text), and a YouTube card/end screen linking to it. Example: k_linkvid in examples/partb_wait/scenes.py.
