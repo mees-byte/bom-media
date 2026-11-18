@@ -69,3 +69,4 @@
 - 2026-11-17: Free vocal check for AI music: run faster-whisper (small.en, vad_filter) over music.mp3 locally — 0 segments = no vocals. No ElevenLabs transcription credits needed.
 - 2026-11-17: Pixabay returns 429 after ~12 photo queries in a row; download in batches of ~10 with a pause, keep what you have.
 - 2026-11-17: Long videos for this channel now 6–7 min (payoff in first 20 s, link to the related earlier video in the first 30 s, "subscribe and I'll break it down the day it lands" promise).
+- 2026-11-18: Owner: long videos of 6+ minutes get 6 Shorts — 3 on release day (18/20/22) and 3 the next day (18/20/22). Never start a Short on a count-up animation; freeze the first second on the finished number.
