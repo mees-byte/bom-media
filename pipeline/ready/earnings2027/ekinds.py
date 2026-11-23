@@ -173,8 +173,12 @@ def k_vs(img, t, dur, a):
         if p <= 0: continue
         l, d = lay_(); al = int(255 * clamp(p))
         d.rounded_rectangle([cx - 330, 140, cx + 330, 870], 34, fill=(14, 20, 38, int(al * .88)))
-        person(d, cx, 420, 0.9, col, al)
-        d.text((cx, 600), nm, font=F(70), fill=CREAM + (al,), anchor="mm")
+        pp = os.path.join(ROOT, "px", ("linda_sq" if i == 0 else "harold_sq") + ".jpg")
+        if os.path.exists(pp):
+            ph = Image.open(pp).convert("RGB").resize((380, 380), Image.LANCZOS); mk = Image.new("L", (380, 380), 0)
+            ImageDraw.Draw(mk).rounded_rectangle([0, 0, 380, 380], 40, fill=al); l.paste(ph, (int(cx - 190), 175), mk)
+        else: person(d, cx, 420, 0.9, col, al)
+        d.text((cx, 610), nm, font=F(70), fill=CREAM + (al,), anchor="mm")
         d.text((cx, 660), age, font=F(32, "SemiBold"), fill=SOFT + (al,), anchor="mm")
         d.text((cx, 730), inc, font=F(fit(inc, 42, 600, "Bold"), "Bold"), fill=CREAM + (al,), anchor="mm")
         img.alpha_composite(l)
