@@ -35,3 +35,5 @@ Worked example (own arithmetic on S1 rules, hypothetical person):
 - [S5] Earnings test exempt amounts are indexed to the national average wage index (Social Security Act §203(f)(8)); SSA OACT "Exempt amounts under the earnings test": https://www.ssa.gov/oact/cola/rtea.html — used for "It goes up most years, along with average wages."
 - Year-you-reach-FRA monthly equivalent 2027: $5,660/mo (S1).
 - Fact check 2026-11-23: 1st pass NOT PASS (framing "a delay", "loses", birthday month, "doesn't change", $2,130 hedge, 1960 cutoff, advice wording, wage-index source) → all fixed.
+- [S6] SSA EN-05-10077: benefits are paid in the month after the month they are due; SSA tells you when it adjusts benefits based on your report. https://www.ssa.gov/pubs/EN-05-10077.pdf
+- Story version (Linda/Harold, fictional, labelled): 2nd check NOT PASS (deposit timing one month behind, raise wording, hours/wage plausibility, SSA notice) → fixed.

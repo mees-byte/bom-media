@@ -10,8 +10,11 @@ C. The $25,560 Social Security Rule Every Working Retiree Needs to Know
 ## Thumbnail (Mees's AI photo: older person at work/with a paycheck + overlay)
 Big gold "$25,560" + pill "THEY HOLD YOUR CHECKS?" (alt: "EARN $1 MORE = LOSE 50¢?")
 
-## Chapters
-0:00 The $25,560 number · Ch1 The limit · Ch2 How they take it · Ch3 What counts (and what doesn't) · Ch4 The money comes back. Slowly. · Ch5 The first-year rule
+## Format (owner 2026-11-23: earlier videos all used the same template)
+STORY, not explainer: fictional Linda (63, part-time job, 4 checks held) vs fictional Harold (pension + investments, nothing held), both labelled made-up in the first 20 s. No spoken 'Chapter X', no 'By the end of this video', no 'I read every reply', new subscribe line, callback ending.
+
+## Chapters (description only)
+0:00 Linda's missing checks · Last fall · The $25,560 number · Harold · The money comes back. Slowly. · What if her timing was different
 
 ## Hooks (scored)
 1. "Earn one dollar more than $25,560 and Social Security can hold back 50 cents" + "That money isn't gone" twist — 9/10 ← used
