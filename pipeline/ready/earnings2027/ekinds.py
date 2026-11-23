@@ -296,3 +296,84 @@ def k_share(img, t, dur, a):
         d.text((W / 2, 580), "SUBSCRIBED ✓" if clicked else "SUBSCRIBE", font=F(int(64 * sz)), fill=(255, 255, 255), anchor="mm")
         img.alpha_composite(l)
     slide_text(img, (W / 2, 760), "THE NEXT RULE, BEFORE IT HITS YOUR BANK ACCOUNT", 44, t, 1.8, fill=SOFT)
+
+# ---------- no double captions: hide a caption chunk when its words are already on screen ----------
+import re as _re
+try:
+    from num2words import num2words as _n2w
+except Exception:
+    _n2w = None
+STOP = set("a an the and or of to in on for is it its it's that this was were be at by with from as so but if you your her she he his they them their there here just not no".split())
+KTEXT = {
+    "dollar": "every $1 earned above $25,560 50 cents you keep social security holds back fifty",
+    "limitbar": "linda's 2027 earnings from work limit $25,560 $35,560 $10,000 over half held back $5,000 ten thousand five thousand",
+    "held": "$5,000 to hold back they stop whole checks $5,600 held extra $600 paid back the next year january february march april",
+    "year": "linda's 2027 checks january february march april may held $1,400 check for may lands in june full from then on four",
+    "counts": "counts doesn't count wages bonuses commissions vacation pay self-employment profit net pensions annuities investment income interest capital gains veterans benefits government military retirement",
+    "vs": "linda harold 63 claimed early part-time job $35,560 pension investments 4 checks held 0 checks held",
+    "payback": "ssa's own example 12 checks held $910 $975 a month full retirement age $10,920 $65 14 years earn it back",
+    "ages": "before the fra year $25,560 $1 held per $2 over year you reach 67 $67,920 $1 per $3 months before from that month no limit age 63 67",
+    "firstyear": "first-year rule any whole month retired earn $2,130 or less that month full check",
+    "share": "know someone claiming and still working send this before january subscribe next rule before it hits your bank account",
+    "choice": "would you have taken the job linda harold works checks held doesn't work",
+    "linkvid": "your 2027 social security raise is 3.6% three point six percent full breakdown watch it next",
+}
+def _num_forms(tok):
+    out = set()
+    v = tok.replace("$", "").replace(",", "").replace("%", "")
+    try:
+        x = float(v)
+    except ValueError:
+        return out
+    if _n2w:
+        for w in _re.split(r"[\s\-,]+", _n2w(x if x != int(x) else int(x))): out.add(w)
+        if int(x) == x and 1100 <= x < 10000 and x % 100 == 0:   # 1,400 -> fourteen hundred
+            for w in _re.split(r"[\s\-]+", _n2w(int(x) // 100)): out.add(w)
+            out.add("hundred")
+    if tok.startswith("$"): out.add("dollars"); out.add("dollar")
+    return out
+def _toks(s):
+    out = set()
+    for raw in _re.findall(r"\$?[\d,.]+%?|[a-z']+", s.lower()):
+        raw = raw.strip(".,")
+        if not raw: continue
+        if _re.match(r"\$?\d", raw): out |= _num_forms(raw); out.add(raw)
+        else:
+            out.add(raw); out.add(raw.rstrip("s")); out.add(raw.replace("'s", ""))
+    return out
+def _scene_text(s):
+    parts = [KTEXT.get(s["kind"], "")]
+    def walk(v):
+        if isinstance(v, str): parts.append(v)
+        elif isinstance(v, (list, tuple)):
+            for x in v: walk(x)
+        elif isinstance(v, dict):
+            for x in v.values(): walk(x)
+    walk(s["a"])
+    if "from" in s["a"] or "to" in s["a"]: parts.append(f'${s["a"].get("to", 0):,}')
+    return " ".join(p for p in parts if isinstance(p, str))
+_cache = {}; _sent = {}
+def _sentence_of(ch):
+    """captions are judged per SENTENCE, so they never flicker on/off inside one sentence"""
+    if not _sent:
+        cur = []
+        for c in CHUNKS:
+            cur.append(c)
+            if _re.search(r"[.?!]$", c[-1]["text"]):
+                ws = [w for cc in cur for w in cc]
+                for cc in cur: _sent[id(cc)] = ws
+                cur = []
+        ws = [w for cc in cur for w in cc]
+        for cc in cur: _sent[id(cc)] = ws
+    return _sent.get(id(ch), ch)
+def CAP_SKIP(s, ch):
+    if s["a"].get("nocap") is not None: return bool(s["a"]["nocap"])
+    k = id(s)
+    if k not in _cache: _cache[k] = _toks(_scene_text(s))
+    st = _cache[k]
+    words = [w for w in (_re.sub(r"[^a-z0-9'$-]", "", x["text"].lower()) for x in _sentence_of(ch)) if w]
+    words = [w2 for w in words for w2 in w.split("-") if w2]
+    content = [w for w in words if w not in STOP]
+    if not content: return False
+    hit = sum(1 for w in content if w in st or w.rstrip("s") in st or w.replace("'s", "") in st)
+    return hit / len(content) >= 0.6 and (hit >= 2 or len(content) == 1)

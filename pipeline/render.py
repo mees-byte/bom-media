@@ -220,11 +220,12 @@ def caption_chunks():
     if cur: chunks.append(cur)
     return chunks
 CHUNKS = caption_chunks()
-def draw_caption(img, T):
+def draw_caption(img, T, skip=None):
     ch = None
     for c in CHUNKS:
         if c[0]["start"] - 0.05 <= T <= c[-1]["end"] + 0.25: ch = c
     if not ch: return
+    if skip and skip(ch): return   # the words are already on screen: no double captions
     d = ImageDraw.Draw(img)
     f = F(56); sp = f.getlength(" ")
     widths = [f.getlength(w["text"].upper()) for w in ch]
@@ -579,7 +580,8 @@ def render_frame(s, f):
     if z > 1.001:
         cw, ch = int(W / z), int(H / z)
         img = img.crop(((W - cw) // 2, (H - ch) // 2, (W - cw) // 2 + cw, (H - ch) // 2 + ch)).resize((W, H), Image.BILINEAR)
-    draw_caption(img, T)
+    cs = globals().get("CAP_SKIP")
+    draw_caption(img, T, (lambda ch: cs(s, ch)) if cs else None)
     return img
 
 def render_scene(i):
