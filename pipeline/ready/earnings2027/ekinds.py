@@ -133,14 +133,14 @@ def k_held(img, t, dur, a):
     img.alpha_composite(l)
     total = 0
     for i, m in enumerate(["JAN", "FEB", "MAR", "APR"]):
-        dl = 0.4 + i * 0.6; p = ease((t - dl) / 0.55)
+        dl = a.get("d0", 0.4) + i * 0.6; p = ease((t - dl) / 0.55)
         if t < dl:
             l, d = lay_(); check(l, d, 480, 300 + i * 150, 0.8, 255, month=m); img.alpha_composite(l); continue
         x = 480 + (fx - 480) * p; y = 300 + i * 150 + (fy - 60 - (300 + i * 150)) * p; s = 0.8 - 0.25 * p
         l, d = lay_(); check(l, d, x, y, s, int(255 * (1 - 0.6 * p)), month=m); img.alpha_composite(l)
         if p >= 1: total += 1400
     if total: text(d0, (fx, fy - 40), f"${total:,}", 96, fill=CREAM, stroke=6)
-    if t > 3.2: slide_text(img, (W / 2, 850), "$5,600 HELD  ·  EXTRA $600 PAID BACK THE NEXT YEAR", 44, t, 3.2, fill=GOLD)
+    if t > a.get("d0", 0.4) + 2.8: slide_text(img, (W / 2, 850), "$5,600 HELD  ·  EXTRA $600 PAID BACK THE NEXT YEAR", 44, t, a.get("d0", 0.4) + 2.8, fill=GOLD)
     src(img, "Method: SSA Pub. 05-10069 examples")
     fiction(img)
 
@@ -193,14 +193,14 @@ def k_payback(img, t, dur, a):
     card(img, 1400, 330, 560, 200, t, 0.6, (120, 54, 30), "$10,920", "12 checks held (12 × $910)")
     x0, x1, y = 200, 1720, 620
     d.rounded_rectangle([x0, y, x1, y + 70], 35, fill=(26, 34, 58))
-    p = ease((t - 1.4) / max(1.0, a.get("fill", 3.0)))
+    p = ease((t - a.get("fs", 1.4)) / max(1.0, a.get("fill", 3.0)))
     d.rounded_rectangle([x0, y, x0 + max(70, (x1 - x0) * p), y + 70], 35, fill=TEAL)
     for k in range(0, 15, 2):
         x = x0 + (x1 - x0) * k / 14; text(d, (x, y + 115), f"{k}", 34, fill=SOFT, w="Bold")
     text(d, (x0 - 10, y + 165), "YEARS", 28, fill=SOFT, w="Bold", anchor="lm")
     yrs = 14 * p
     text(d, (x0 + max(70, (x1 - x0) * p), y - 50), f"+$65/mo · {yrs:4.1f} yrs", 44, fill=CREAM, anchor="rm" if p > 0.4 else "lm")
-    if p >= 1: pop_text(img, (W / 2, 850), "≈ 14 YEARS TO EARN IT BACK", 76, t, 1.4 + a.get("fill", 3.0), fill=GOLD, stroke=6)
+    if p >= 1: pop_text(img, (W / 2, 850), "≈ 14 YEARS TO EARN IT BACK", 76, t, a.get("fs", 1.4) + a.get("fill", 3.0), fill=GOLD, stroke=6)
     src(img, "SSA Pub. 05-10069 · our math, today's dollars")
 
 # ---------- 9. the age line: two limits, then none ----------
@@ -236,8 +236,8 @@ def k_firstyear(img, t, dur, a):
         d.rounded_rectangle([cx - 62, 330, cx + 62, 500], 16, fill=col)
         text(d, (cx, 380), m, 34, fill=CREAM)
         text(d, (cx, 450), "FULL" if retired and t > 1.4 else "work", 30 if retired else 26, fill=GOLD if retired and t > 1.4 else SOFT, w="Bold")
-    slide_text(img, (W / 2, 640), "EARN $2,130 OR LESS THAT MONTH", 72, t, 1.8, fill=GOLD)
-    slide_text(img, (W / 2, 740), "= A FULL CHECK FOR THAT MONTH (2027)", 48, t, 2.2, fill=CREAM)
+    slide_text(img, (W / 2, 640), "EARN $2,130 OR LESS THAT MONTH", 72, t, a.get("dt", 1.8), fill=GOLD)
+    slide_text(img, (W / 2, 740), "= A FULL CHECK FOR THAT MONTH (2027)", 48, t, a.get("dt", 1.8) + 0.4, fill=CREAM)
     src(img, "SSA Pub. 05-10069 · SSA 2027 fact sheet ($2,130/mo)")
 
 # ---------- link to the COLA video (from partb_wait) ----------
@@ -337,7 +337,8 @@ def _toks(s):
     for raw in _re.findall(r"\$?[\d,.]+%?|[a-z']+", s.lower()):
         raw = raw.strip(".,")
         if not raw: continue
-        if _re.match(r"\$?\d", raw): out |= _num_forms(raw); out.add(raw)
+        if _re.match(r"\$?\d", raw):
+            out |= _num_forms(raw); n = raw.replace(",", ""); out |= {raw, n, n.lstrip("$"), n.rstrip("%")}
         else:
             out.add(raw); out.add(raw.rstrip("s")); out.add(raw.replace("'s", ""))
     return out
