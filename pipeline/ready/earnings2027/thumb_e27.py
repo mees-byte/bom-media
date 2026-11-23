@@ -6,7 +6,7 @@ R = importlib.util.module_from_spec(spec); spec.loader.exec_module(R)
 W, H = 1920, 1080; GOLD = R.GOLD
 im = Image.open(sys.argv[1]).convert("RGB")
 s = max(W / im.width, H / im.height) * 1.05; im = im.resize((int(im.width * s) + 1, int(im.height * s) + 1), Image.LANCZOS)
-im = im.crop((60, 0, 60 + W, H))
+ox = int(os.environ.get("OX", "60")); im = im.crop((ox, 0, ox + W, H))
 im = ImageEnhance.Contrast(im).enhance(1.12); im = ImageEnhance.Brightness(im).enhance(1.05); img = im.convert("RGBA")
 g = Image.new("RGBA", (W, H), (0, 0, 0, 0)); gd = ImageDraw.Draw(g)
 for x in range(W):
