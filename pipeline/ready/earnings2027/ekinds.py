@@ -101,17 +101,23 @@ def bill(l, d, cx, cy, w, h, lab, col, al):
     d.ellipse([cx - h * .32, cy - h * .32, cx + h * .32, cy + h * .32], outline=(255, 255, 255, int(al * .5)), width=5)
     d.text((cx, cy), lab, font=F(int(h * 0.42)), fill=(255, 255, 255, al), anchor="mm")
 def k_dollar(img, t, dur, a):
-    slide_text(img, (W / 2, 150), "EVERY $1 EARNED ABOVE $25,560", 60, t, 0, fill=CREAM)
-    p = ease((t - 1.0) / 0.7); l, d = lay_()
-    if p < 0.05:
-        bill(l, d, W / 2, 470, 560, 260, "$1", (34, 110, 70), int(255 * clamp(back(t / 0.4))))
-    else:
-        bill(l, d, W / 2 - 330 * p, 470, 300, 220, "50¢", (34, 110, 70), 255)
-        bill(l, d, W / 2 + 330 * p, 470 + 40 * p, 300, 220, "50¢", (130, 60, 30), 255)
+    """CORRECT picture: the wage dollar is all hers; the 50c comes out of her Social Security benefit"""
+    slide_text(img, (W / 2, 140), "EVERY $1 EARNED ABOVE $25,560", 60, t, 0, fill=CREAM)
+    l, d = lay_(); p1 = back(t / 0.4); al = int(255 * clamp(p1))
+    # left: the paycheck dollar stays whole
+    bill(l, d, 560, 440, 420, 220, "$1", (34, 110, 70), al)
     img.alpha_composite(l)
-    if p >= 1:
-        slide_text(img, (W / 2 - 330, 660), "YOU KEEP", 54, t, 1.8, fill=(120, 220, 160))
-        slide_text(img, (W / 2 + 330, 700), "SOCIAL SECURITY HOLDS", 50, t, 2.0, fill=GOLD)
+    slide_text(img, (560, 620), "HER WAGE: SHE KEEPS ALL OF IT", 40, t, 0.4, fill=(120, 220, 160))
+    # right: the Social Security benefit loses 50c
+    p2 = back((t - 1.0) / 0.4)
+    if p2 > 0:
+        l2, d2 = lay_(); a2 = int(255 * clamp(p2))
+        check(l2, d2, 1360, 440, 0.95, a2, amt="$1,400.00", month="SOCIAL SECURITY")
+        img.alpha_composite(l2)
+    if t > 1.6:
+        pop_text(img, (1360, 620), "−50¢", 110, t, 1.6, fill=WARN, stroke=8)
+        slide_text(img, (1360, 720), "HELD FROM HER BENEFIT", 40, t, 1.8, fill=GOLD)
+    if t > 2.4: slide_text(img, (W / 2, 840), "$1 OF BENEFITS HELD FOR EVERY $2 OVER", 50, t, 2.4, fill=CREAM)
     src(img, "SSA 2027 fact sheet · under full retirement age")
 
 # ---------- 5. four checks into the 'held' folder ----------
@@ -119,7 +125,7 @@ def check(l, d, cx, cy, s, al, amt="$1,400.00", month=""):
     w, h = 520 * s, 230 * s
     d.rounded_rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], 16, fill=PAPER + (al,), outline=(190, 180, 150, al), width=3)
     d.rectangle([cx - w / 2, cy - h / 2, cx + w / 2, cy - h / 2 + 34 * s], fill=(86, 120, 170, al))
-    d.text((cx - w / 2 + 24 * s, cy - 30 * s), f"BENEFIT FOR {month}", font=F(int(26 * s), "Bold"), fill=INKD + (al,), anchor="lm")
+    d.text((cx - w / 2 + 24 * s, cy - 30 * s), month if " " in month else f"BENEFIT FOR {month}", font=F(int(26 * s), "Bold"), fill=INKD + (al,), anchor="lm")
     d.text((cx + w / 2 - 24 * s, cy + 20 * s), amt, font=F(int(46 * s)), fill=INKD + (al,), anchor="rm")
     d.line([(cx - w / 2 + 24 * s, cy + 70 * s), (cx + 40 * s, cy + 70 * s)], fill=(160, 150, 130, al), width=3)
 def k_held(img, t, dur, a):
@@ -207,9 +213,9 @@ def k_payback(img, t, dur, a):
 def k_ages(img, t, dur, a):
     d = ImageDraw.Draw(img)
     x0, x1, y = 180, 1740, 560
-    segs = [(0.0, 0.62, (120, 54, 30), "BEFORE THE FRA YEAR", "$25,560", "$1 held per $2 over"),
-            (0.62, 0.84, AMBER, "YEAR YOU REACH 67", "$67,920", "$1 per $3 · months before"),
-            (0.84, 1.0, TEAL, "FROM THAT MONTH", "NO LIMIT", "")]
+    segs = [(0.0, 0.50, (120, 54, 30), "BEFORE THE FRA YEAR", "$25,560", "$1 held per $2 over"),
+            (0.50, 0.76, AMBER, "YEAR YOU REACH 67", "$67,920", "$1 per $3 · months before"),
+            (0.76, 1.0, TEAL, "FROM THAT MONTH", "NO LIMIT", "")]
     for i, (s0, s1, col, lab, big, sub) in enumerate(segs):
         dl = a.get("d", [0.2, 1.2, 2.4])[i]; p = ease((t - dl) / 0.5)
         if p <= 0: continue
@@ -217,10 +223,10 @@ def k_ages(img, t, dur, a):
         d.rounded_rectangle([xa + 4, y, xb - 4, y + 90], 22, fill=col)
         cx = (x0 + (x1 - x0) * s0 + x0 + (x1 - x0) * s1) / 2
         if p > 0.6:
-            slide_text(img, (cx, y - 230), lab, 32 if i else 38, t, dl + 0.2, fill=SOFT, w="Bold")
+            slide_text(img, (cx, y - 230), lab, 30 if i else 38, t, dl + 0.2, fill=SOFT, w="Bold")
             slide_text(img, (cx, y - 150), big, 72 if i < 2 else 60, t, dl + 0.3, fill=GOLD if i < 2 else (120, 220, 160))
             if sub: slide_text(img, (cx, y - 80), sub, 30 if i else 36, t, dl + 0.4, fill=CREAM, w="SemiBold")
-    for lab, s0 in [("63", 0.0), ("67", 0.84)]:
+    for lab, s0 in [("63", 0.0), ("67", 0.76)]:
         text(d, (x0 + (x1 - x0) * s0 + (30 if s0 == 0 else 0), y + 150), "AGE " + lab, 40, fill=CREAM)
     src(img, "SSA 2027 fact sheet · FRA 67 for almost everyone born 1960+")
 
@@ -305,7 +311,7 @@ except Exception:
     _n2w = None
 STOP = set("a an the and or of to in on for is it its it's that this was were be at by with from as so but if you your her she he his they them their there here just not no".split())
 KTEXT = {
-    "dollar": "every $1 earned above $25,560 50 cents you keep social security holds back fifty",
+    "dollar": "every $1 earned above $25,560 your wage you keep all of it 50 cents held from her benefit $1 of benefits held for every $2 over fifty social security",
     "limitbar": "linda's 2027 earnings from work limit $25,560 $35,560 $10,000 over half held back $5,000 ten thousand five thousand",
     "held": "$5,000 to hold back they stop whole checks $5,600 held extra $600 paid back the next year january february march april",
     "year": "linda's 2027 checks january february march april may held $1,400 check for may lands in june full from then on four",
@@ -368,6 +374,7 @@ def _sentence_of(ch):
         for cc in cur: _sent[id(cc)] = ws
     return _sent.get(id(ch), ch)
 def CAP_SKIP(s, ch):
+    if "kind0" not in s: s["kind0"] = s["kind"]
     if s["a"].get("nocap") is not None: return bool(s["a"]["nocap"])
     k = id(s)
     if k not in _cache: _cache[k] = _toks(_scene_text(s))
@@ -378,3 +385,12 @@ def CAP_SKIP(s, ch):
     if not content: return False
     hit = sum(1 for w in content if w in st or w.rstrip("s") in st or w.replace("'s", "") in st)
     return hit / len(content) >= 0.6 and (hit >= 2 or len(content) == 1)
+
+def k_ftitle(img, t, dur, a): k_title(img, t, dur, a); fiction(img)
+def k_fphoto(img, t, dur, a): k_photo(img, t, dur, a); fiction(img)
+def k_fhero(img, t, dur, a): k_hero(img, t, dur, a); fiction(img)
+def label_fiction(S):
+    for s_ in S:
+        if any(n in s_["bg"] for n in ("linda", "harold")) and s_["kind"] in ("title", "photo", "hero"):
+            s_["kind"] = "f" + s_["kind"]
+            KTEXT["f" + "title"] = KTEXT.get("title", "")

@@ -9,14 +9,14 @@ NR = lambda d_, dl: (d_, "SOCIAL SECURITY", "NOT RECEIVED", WARN, dl)
 
 # --- cold open: the empty deposits
 sc("It's February", "bankapp", PX("linda_face"), fic=True, lines=["FEBRUARY 2027", ("LINDA, 63", GOLD)],
-   rows=[("Jan 3", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.4), PAY("Jan 30", 0.7)])
+   rows=[("Jan 20", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.4), PAY("Jan 29", 0.7)])
 sc("She checks her bank", "bankapp", PX("linda_table"), fic=True, lines=["PAYDAY FOR", ("SOCIAL SECURITY", GOLD)],
-   rows=[("Jan 3", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.0), PAY("Jan 30", 0.0), ("Feb 3", "SOCIAL SECURITY", "— — —", WARN, 1.2)])
+   rows=[("Jan 20", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.0), PAY("Jan 29", 0.0), ("Feb 17", "SOCIAL SECURITY", "— — —", WARN, 1.2)])
 sc("No $1,400", "bankapp", PX("linda_table"), fic=True, lines=[("NO $1,400", WARN), "JUST HER PAYCHECK"],
-   rows=[PAY("Jan 30", 0.0), NR("Feb 3", 0.2), PAY("Feb 13", 0.5)], stamp=("MISSING", 0.8))
+   rows=[PAY("Feb 12", 0.0), NR("Feb 17", 0.2), PAY("Feb 26", 0.5)], stamp=("MISSING", 0.8))
 sc("March. Nothing again.", "bankapp", PX("linda_face"), fic=True, lines=["MARCH. APRIL.", ("MAY.", GOLD)],
-   rows=[NR("Mar 3", 0.1), NR("Apr 3", 1.0), NR("May 3", 1.9)])
-sc("Linda isn't a real", "photo", PXB("linda_wide"), lines=[("ILLUSTRATIVE EXAMPLE", SOFT), ("REAL 2027 RULES", GOLD)], y=800)
+   rows=[NR("Mar 17", 0.1), NR("Apr 21", 1.0), NR("May 19", 1.9)])
+sc("Linda isn't a real", "photo", PXB("linda_wide"), lines=[("LINDA IS MADE UP", CREAM), ("THE 2027 RULES ARE REAL", GOLD)], y=800)
 sc("And if you're claiming", "title", "navy", kicker="IF YOU'RE CLAIMING AND STILL WORKING", lines=[("THIS CAN HAPPEN", CREAM), ("TO YOU", GOLD)], size=120)
 sc("Because her checks weren't", "title", PX("linda_face"), lines=[("NOT LOST.", CREAM), ("HELD.", GOLD)], size=170)
 sc("On purpose.", "title", "navy", lines=[("ON PURPOSE.", CREAM)], size=150)
@@ -34,7 +34,7 @@ sc("What she didn't realize", "title", "navy", lines=[("WHAT THAT ANSWER", CREAM
 # --- the number
 sc("Here's the number.", "hero", "navy", kicker="THE 2027 EARNINGS LIMIT", **{"from": 0, "to": 25560}, label="IF YOU CLAIM BEFORE FULL RETIREMENT AGE", src="Source: SSA 2027 COLA fact sheet")
 sc("That's the 2027 limit", "ages", "navy", d=[0.2, 99, 99])
-sc("Earn more than that", "dollar", "navy")
+sc("Earn more than that", "dollar", "navy", nocap=True)
 sc("So, every extra dollar", "dollar", "navy")
 sc("She was $10,000 over.", "limitbar", "navy", earn=35560, half=True, fic=True)
 sc("Now, you'd expect them", "title", "navy", lines=[("A LITTLE FROM EACH CHECK?", CREAM)], size=110)
@@ -75,6 +75,8 @@ sc("And if Linda had", "firstyear", "navy", dt=12.2)
 sc("If someone you know", "share", "navy")
 sc("This is general education,", "title", "navy", lines=[("GENERAL EDUCATION", CREAM), ("NOT FINANCIAL ADVICE", SOFT)], size=90)
 sc("So, back to February.", "bankapp", PX("linda_face"), fic=True, lines=["NOTHING WENT WRONG.", ("THE RULE WORKED.", GOLD)],
-   rows=[("Feb 3", "SOCIAL SECURITY", "HELD", WARN, 0.2), ("Jun 3", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.8)])
+   rows=[("Feb 17", "SOCIAL SECURITY", "HELD", WARN, 0.2), ("Jun 16", "SOCIAL SECURITY", "+$1,400.00", (30, 140, 90), 0.8)])
 sc("She just met it", "photo", PXB("linda_wide"), lines=[("SHE MET THE RULE", CREAM), ("WITH HER OWN MONEY", GOLD)], y=800)
 sc("You don't have to.", "hero", "navy", kicker="NOW YOU KNOW THE NUMBER", **{"from": 0, "to": 25560}, label="BEFORE IT KNOWS YOU", src="SSA 2027 COLA fact sheet")
+
+label_fiction(S)
