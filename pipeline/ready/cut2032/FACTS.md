@@ -28,3 +28,4 @@ Sources
 | 16 | FRA 67 for born Jan 2 1960+ | | S3 |
 | 17 | OWN MATH: 60 in 2026 → 66 in 2032 | | calc |
 - Fact check 2026-11-25: round 1 NOT PASS (13 items: 'scheduled' wording, avg check timing, 5,700 math, reasons=shortfall not date, OASI-only date, merged-fund 17% path, couple figure qualifiers, 'new beneficiaries', 1983 who paid, titles/thumbnail) → fixed; round 2 PASS.
+| 18 | Combined OASI+DI depletion 2034 — same as last year | | T1, C1 |
