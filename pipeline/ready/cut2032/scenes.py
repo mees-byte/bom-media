@@ -12,6 +12,8 @@ KTEXT = {
     "options": "close the gap 75 years congress acted today 34% payroll tax increase 25% cut all benefits 30% new beneficiaries only wait until 2034 40% tax increase 29% cut",
     "share": "know someone counting on every dollar send them this subscribe next report what changed in dollars",
     "bigcut": "22% retirees projected q4 2032 if congress does nothing now you know the number",
+    "news": "trustees report june 9 2026 news fox business npr fortune newsweek aarp social security has less than 10 years before reserves are exhausted new trustees report warns funds could run short by 2032 program's trustees warn we are rapidly running out of time watchdog sounds alarm 22% cut confirmed for 2032 who could lose what in 2032 report projects trust fund shortfall in 2034",
+    "law": "public law 98-21 social security amendments of 1983 signed april 20 1983 president reagan delayed june 1983 cost-of-living adjustment until december one-half of benefits taxable retirement age raised 67",
     "vote": "if it were your vote raise taxes cut benefits mix comment answer no politics",
     "y1983": "1983 early months away running dry march congress passed fix april president reagan signed yearly raise delayed six months income tax half benefits full retirement age 65 67",
 }
@@ -29,7 +31,10 @@ sc("On the average retirement", "hero", "navy", kicker="ON THE AVERAGE RETIREMEN
 sc("It's a projection under", "title", "navy", kicker="IMPORTANT", lines=[("A PROJECTION UNDER CURRENT LAW", CREAM), ("NOT A FINAL DECISION", SOFT)], size=84)
 sc("But it's the official", "title", "navy", lines=[("BUT IT'S", CREAM), ("THE OFFICIAL ONE.", GOLD)], size=130)
 sc("This isn't a rumor,", "title", "navy", lines=[("NOT A RUMOR.", CREAM), ("NOT A POLITICIAN.", CREAM)], size=120)
-sc("It's the 2026 Trustees", "note", "navy", kicker="THE SOURCE", big="2026 TRUSTEES REPORT", lines=["Social Security Board of Trustees", "Released June 9, 2026"], src="SSA press release, June 9, 2026", col=STEELC, bcol=CREAM)
+sc("It's the 2026 Trustees", "news", "navy", title="HOW THE NEWS REPORTED THE 2026 TRUSTEES REPORT", gap=1.3, items=[
+    dict(outlet="Fox Business", date="June 9, 2026", head="Social Security has less than 10 years before reserves are exhausted, new trustees report warns", y=330, dx=-150, rot=1.5, w=1250),
+    dict(outlet="NPR (via OPB)", date="June 9, 2026", head="Social Security funds could run short by 2032, program's Trustees warn", y=545, dx=150, rot=-1.2, w=1250, hl=["by 2032,"]),
+    dict(outlet="Fortune", date="June 9, 2026", head="'We are rapidly running out of time': Watchdog sounds Social Security alarm after 22% cut confirmed for 2032", y=772, dx=-60, rot=0.6, w=1400)], note="OUR NOTE: THE TRUSTEES PROJECT THIS UNDER CURRENT LAW. CONGRESS CAN STILL ACT.", dn=3.0)
 sc("And this year, the", "shift", "navy")
 
 # --- how a check shrinks
@@ -42,8 +47,10 @@ sc("Workers keep paying in.", "grid78", "navy", dc=2.0)
 sc("78%. Not 100.", "title", "navy", lines=[("78%. NOT 100%.", CREAM), ("= THE 22% CUT", WARN)], size=140)
 sc("Take the average retirement", "shrink", "navy", d=5.0)
 sc("If Congress merged the", "note", "navy", kicker="IF CONGRESS MERGED RETIREMENT + DISABILITY FUNDS", big="2034 · ABOUT −17%", lines=["Still requires a vote", "Per CRFB · Trustees: combined funds 83% payable"], src="CRFB analysis · SSA press release", col=STEELC)
+sc("the date would be", "news", "navy", title="THE 2034 VIEW (COMBINED FUNDS)", items=[dict(outlet="AARP", date="on the 2026 report", head="Social Security Report Projects Trust Fund Shortfall in 2034", y=470, hl=["2034"])])
 sc("And the Committee for", "note", "navy", kicker="CRFB ESTIMATE (EARLIER WORK, SIMILAR CUT)", big="−$18,400 A YEAR", lines=["Typical couple retiring in 2033", "Both spouses combined"], src="Committee for a Responsible Federal Budget", col=(120, 54, 30), bcol=WARN)
-sc("Now, who would that", "ages32", "navy")
+sc("Now, who would that", "news", "navy", title="IN THE NEWS", items=[dict(outlet="Newsweek", date="Nov 9, 2026", head="Social Security cut: Who could lose what in 2032?", y=470, hl=["Who could lose what"])])
+sc("If you're 60 today,", "ages32", "navy")
 
 # --- why it got worse
 sc("So why did things", "title", "navy", lines=[("WHY DID IT", CREAM), ("GET WORSE?", GOLD)], size=150)
@@ -63,7 +70,8 @@ sc("In the early 1980s,", "y1983", "navy", run=9.0)
 sc("When Congress finally passed", "doc", "navy", head="CONGRESSIONAL RESEARCH SERVICE · REPORT R47040",
    quote="When the 1983 amendments were passed, Social Security was months or weeks away from being unable to pay full benefits.",
    hl=["months or weeks away"], dh=1.5, hs=1.5, cite="Quoted from CRS report R47040 (March 4, 2022)")
-sc("President Reagan signed it", "y1983", "navy", run=0.01, show_paid=True, dp=6.2, gap=3.0)
+sc("President Reagan signed it", "law", "navy", ds=0.6, drows=[6.2, 6.5, 8.3, 8.6, 12.2], rows=[
+    ("\"Delayed the June 1983 cost-of-living adjustment", True), ("  until December 1983\"", True), ("Up to \"one-half of Social Security benefits\"", True), ("  taxable, above certain incomes", True), ("Retirement age raised \"in two stages to 67\"", True)])
 sc("That's why your full", "title", "navy", kicker="BORN IN 1960 OR LATER?", lines=[("FULL RETIREMENT AGE: 67", GOLD), ("THE LAST BIG FIX", CREAM)], size=110)
 sc("So, the question was", "title", "navy", lines=[("NOT WHETHER CONGRESS ACTS.", CREAM), ("WHO PAYS.", GOLD)], size=130)
 

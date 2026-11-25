@@ -238,3 +238,71 @@ def k_bigcut(img, t, dur, a):
     slide_text(img, (W / 2, 200), a.get("kicker", ""), 44, t, 0, fill=SOFT, w="Bold")
     pop_text(img, (W / 2, 470), "−22%", 300, t, 0.1, fill=WARN, stroke=10)
     slide_text(img, (W / 2, 760), a.get("sub", "PROJECTED · Q4 2032 · IF CONGRESS DOES NOTHING"), 44, t, 0.5, fill=CREAM, w="Bold")
+
+# ---------- real news headlines, quoted verbatim, in OUR neutral card style (no outlet logos/branding) ----------
+SERIF = "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf"
+SERIF_R = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
+_sf = {}
+def FS(size, bold=True):
+    k = (size, bold)
+    if k not in _sf: _sf[k] = ImageFont.truetype(SERIF if bold else SERIF_R, size)
+    return _sf[k]
+def headline_card(img, cx, cy, w, outlet, date, head, al, rot=0, hl=None, t=9, dh=0):
+    f = FS(46); lines = wrap(head, f, w - 100); h = 140 + len(lines) * 56
+    card_ = Image.new("RGBA", (int(w) + 40, int(h) + 40), (0, 0, 0, 0)); d = ImageDraw.Draw(card_)
+    d.rounded_rectangle([20, 26, w + 20, h + 26], 8, fill=(0, 0, 0, int(al * .45)))
+    d.rounded_rectangle([10, 10, w + 10, h + 10], 8, fill=(252, 251, 247, al))
+    d.text((60, 58), f"{outlet.upper()}  ·  {date}", font=F(28, "Bold"), fill=(120, 124, 140, al), anchor="lm")
+    d.line([(60, 92), (w - 40, 92)], fill=(214, 210, 200, al), width=3)
+    q = clamp((t - dh) / 1.2)
+    for i, ln in enumerate(lines):
+        y = 135 + i * 56
+        if hl:
+            for ph in hl:
+                if ph in ln:
+                    xs = 60 + f.getlength(ln[:ln.index(ph)]); xe = xs + f.getlength(ph) * clamp(q * 1.2)
+                    if xe > xs: d.rectangle([xs - 4, y - 30, xe + 4, y + 30], fill=HL + (int(al * .7),))
+        d.text((60, y), ln, font=f, fill=(18, 20, 28, al), anchor="lm")
+    if rot: card_ = card_.rotate(rot, resample=Image.BICUBIC, expand=True)
+    img.alpha_composite(card_, (int(cx - card_.width / 2), int(cy - card_.height / 2)))
+
+def k_news(img, t, dur, a):
+    """stack of real headlines (verbatim) dropping in one by one"""
+    slide_text(img, (W / 2, 125), a.get("title", "HOW THE NEWS REPORTED IT"), 42, t, 0, fill=SOFT, w="Bold")
+    items = a["items"]; n = len(items)
+    for i, it in enumerate(items):
+        dl = a.get("gap", 1.0) * i + 0.2; p = back((t - dl) / 0.4)
+        if p <= 0: continue
+        off = (n - 1 - i) if a.get("stack", True) else 0
+        cx = W / 2 + it.get("dx", 0); cy = it.get("y", 330 + i * 150) + 40 * (1 - clamp(p))
+        headline_card(img, cx, cy, it.get("w", 1300), it["outlet"], it["date"], it["head"], int(255 * clamp(p)), rot=it.get("rot", 0), hl=it.get("hl"), t=t, dh=dl + 0.5)
+    if a.get("note") and t > a.get("dn", 3.0): slide_text(img, (W / 2, 932), a["note"], 30, t, a.get("dn", 3.0), fill=GOLD, w="Bold")
+    src(img, a.get("src", "Headlines quoted verbatim from the publishers"))
+
+# ---------- the 1983 law as a document ----------
+def k_law(img, t, dur, a):
+    p = back(t / 0.45); l, d = lay_(); al = int(255 * clamp(p))
+    x0, y0, x1, y1 = 460, 110 + 30 * (1 - clamp(p)), 1460, 900
+    d.rectangle([x0 + 14, y0 + 18, x1 + 14, y1 + 18], fill=(0, 0, 0, int(al * .45)))
+    d.rectangle([x0, y0, x1, y1], fill=(250, 248, 240, al))
+    d.text((W / 2, y0 + 80), "PUBLIC LAW 98-21", font=FS(60), fill=(18, 20, 28, al), anchor="mm")
+    d.text((W / 2, y0 + 150), "H.R. 1900 · 98th Congress", font=FS(36, False), fill=(60, 64, 80, al), anchor="mm")
+    d.text((W / 2, y0 + 230), "SOCIAL SECURITY AMENDMENTS OF 1983", font=FS(46), fill=(18, 20, 28, al), anchor="mm")
+    d.line([(x0 + 80, y0 + 290), (x1 - 80, y0 + 290)], fill=(200, 196, 186, al), width=3)
+    d.text((x0 + 80, y0 + 315), "What the law did, in SSA's own summary:", font=F(26, "SemiBold"), fill=(110, 116, 134, al), anchor="lm")
+    img.alpha_composite(l)
+    rows = a.get("rows", [])
+    for i, (s_, hl) in enumerate(rows):
+        dl = a["drows"][i] if "drows" in a else a.get("d0", 1.0) + i * a.get("gap", 1.2); q = ease((t - dl) / 0.4)
+        if q <= 0: continue
+        l2, d2 = lay_(); y = y0 + 360 + i * 70; f = FS(36, False)
+        if hl: d2.rectangle([x0 + 76, y - 26, x0 + 84 + f.getlength(s_) * clamp(q * 1.3), y + 26], fill=HL + (170,))
+        d2.text((x0 + 80, y), s_, font=f, fill=(18, 20, 28, int(255 * q)), anchor="lm"); img.alpha_composite(l2)
+    if t > a.get("ds", 0.6):
+        q = back((t - a.get("ds", 0.6)) / 0.35); l3, d3 = lay_()
+        stamp = "SIGNED APRIL 20, 1983"; f3 = F(int(46 * (1.3 - 0.3 * clamp(q))))
+        tw = f3.getlength(stamp); cx, cy = x1 - 280, y1 - 42
+        d3.rounded_rectangle([cx - tw / 2 - 24, cy - 40, cx + tw / 2 + 24, cy + 40], 10, outline=(150, 40, 30, int(255 * clamp(q))), width=7)
+        d3.text((cx, cy), stamp, font=f3, fill=(150, 40, 30, int(255 * clamp(q))), anchor="mm")
+        img.alpha_composite(l3.rotate(-6, center=(cx, cy)))
+    src(img, "CRS R47040 · SSA legislative history, 1983 amendments")
