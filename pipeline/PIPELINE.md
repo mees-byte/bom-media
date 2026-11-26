@@ -110,8 +110,11 @@ Check: no text outside the frame or under the captions (keep content above y≈9
    "Could not upload video thumbnail", set it with vidIQ `vidiq_update_video_thumbnail` on the new video ID and tell the owner.
 3. Metricool copies the media to its own storage (the response shows static.metricool.com URLs). Nothing to clean up — the next run overwrites the `media` branch.
 
-## 10. Shorts — 3 per long video, owner uploads them himself (owner choice 2026-11-05)
-- Metricool free plan (20 posts/month) is reserved for the LONG videos. Do NOT schedule Shorts in Metricool anymore.
+## 10. Shorts — 1 per long video via Metricool (owner choice 2026-11-26, Metricool free plan = 20 posts/month)
+- Budget: 2 long videos/week (Mon + Thu 17:00) + 1 Short each (next day 18:00) = ≤ 18 posts/month; check the month's count in SCHEDULE.md first.
+- The ONE Short: the strongest 30–58 s segment (hook in the first 2 s, ends on a payoff or question), never starting on a count-up.
+- Optional extra Shorts: cut with shorts.py and send to the owner to upload himself (not via Metricool).
+- (Older rule, kept for history: 3 Shorts per video uploaded by the owner.)
 - For EVERY new long video cut **3 new Shorts** (20–30 s each) with `pipeline/shorts.py`, 0 credits:
   `python3 bom-media/pipeline/shorts.py work/VIDEO.mp4 <start> <dur> "<hook ≤ 6 words>" work/short_N.mp4`.
   Find exact start/end with caption strips (crop y 860–1060 of the long video, fps 2, tile) — word-position estimates run ~2–3 s early.
