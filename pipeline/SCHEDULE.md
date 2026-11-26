@@ -1,12 +1,10 @@
 # SCHEDULE — Billion Dollar Mistakes
 
-## METRICOOL FREE PLAN BUDGET (owner 2026-11-26): max 20 posts per calendar month — every scheduled long video OR Short counts as 1.
-Long videos: 2 per week, **Mon + Thu 17:00** Europe/Amsterdam, via Metricool (= ~8–9 posts/month).
-Shorts: **1 per long video** via Metricool, the next day 18:00 (= ~8–9 posts/month). Pick the single strongest segment (hook + payoff, 30–58 s).
-Spare: 2–3 posts/month for a breaking-news video or Short. Count the month's Metricool posts in the log BEFORE scheduling; never go over 20.
-Extra Shorts (2 more per video) are optional: cut them (0 credits) and deliver to the owner to upload himself in YouTube Studio, never via Metricool.
-December 2026 plan: long Thu 3, Mon 7, Thu 10, Mon 14, Thu 17, Mon 21, (Thu 24 Christmas Eve: evergreen, pre-scheduled), Mon 28, Thu 31 (skip if needed) = 8–9 long + 8–9 Shorts (Fri 4, Tue 8, Fri 11, Tue 15, Fri 18, Tue 22, Fri 25, Tue 29) ≤ 18 posts.
-November 2026: limit already reached (20/20) → until Dec 1 the owner uploads in YouTube Studio himself.
+## CADENCE (owner 2026-11-26, back to the start): 3 videos/week, Mon / Wed / Fri 17:00 Europe/Amsterdam, via Metricool.
+Videos are SHORT long-form again: ~3:30–4:30 (480–650 words), like the first videos. Wed = evergreen, Mon/Fri = trend.
+Metricool free plan = 20 posts/month: the ~13 videos/month fit; Shorts do NOT (3 × 13 = 39 more).
+Shorts: 3 per video, on the video day at 18:00 / 20:00 / 22:00 — cut by the pipeline (0 credits) and delivered to the owner as files + titles/descriptions/tags; the owner uploads them himself in YouTube Studio (or Claude does it via the desktop app's built-in browser when available). Never schedule Shorts in Metricool unless the owner upgrades.
+Before scheduling, count the month's Metricool posts in the log; never go over 20. November 2026 is already at 20/20 → until Dec 1 the owner uploads everything himself.
 TikTok: 3 per long video (1 main 61–90 s + 2 short), 1 per day, delivered daily to the owner, he posts them himself (PIPELINE §10b).
 
 ## Evergreen queue (Wednesday)
