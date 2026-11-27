@@ -36,7 +36,7 @@ def k_doc(img, t, dur, a):
                 xe2 = xs + (xe - xs) * clamp(q * 1.2)
                 if xe2 > xs: d.rectangle([xs - 6, y - 30, xe2 + 6, y + 32], fill=HL + (int(al * .75),))
         d.text((x0 + 70, y), ln, font=f, fill=INKD + (al,), anchor="lm")
-    d.text((x0 + 70, y1 - 40), a["cite"], font=F(26, "SemiBold"), fill=(110, 116, 134, al), anchor="lm")
+    d.text((x0 + 70, y1 - 40), a["cite"], font=F(fit(a["cite"], 26, x1 - x0 - 140, "SemiBold"), "SemiBold"), fill=(110, 116, 134, al), anchor="lm")
     img.alpha_composite(l)
 
 # ---------- 2. countdown: years ticking to Q4 2032 ----------
@@ -126,7 +126,7 @@ def k_grid78(img, t, dur, a):
 def k_note(img, t, dur, a):
     p = back(t / 0.4); l, d = lay_(); al = int(255 * clamp(p))
     d.rounded_rectangle([360, 220, 1560, 760], 34, fill=(14, 20, 38, int(al * .92)), outline=a.get("col", STEELC) + (al,), width=6)
-    d.text((W / 2, 300), a["kicker"], font=F(40, "Bold"), fill=SOFT + (al,), anchor="mm")
+    d.text((W / 2, 300), a["kicker"], font=F(fit(a["kicker"], 40, 1120, "Bold"), "Bold"), fill=SOFT + (al,), anchor="mm")
     d.text((W / 2, 450), a["big"], font=F(fit(a["big"], 140, 1100)), fill=a.get("bcol", GOLD) + (al,), anchor="mm")
     for i, ln in enumerate(a.get("lines", [])):
         d.text((W / 2, 580 + i * 60), ln, font=F(40, "Bold"), fill=CREAM + (al,), anchor="mm")
@@ -187,12 +187,12 @@ def k_options(img, t, dur, a):
         if p <= 0: continue
         l, d = lay_(); al = int(255 * clamp(p)); s = 0.8 + 0.2 * clamp(p)
         d.rounded_rectangle([cx - 240 * s, 280, cx + 240 * s, 760], 30, fill=col + (al,))
-        d.text((cx, 430), big, font=F(int(140 * s)), fill=(255, 255, 255, al), anchor="mm")
+        d.text((cx, 430), big, font=F(fit(big, int(140 * s), 440)), fill=(255, 255, 255, al), anchor="mm")
         d.text((cx, 580), lab, font=F(fit(lab, 48, 440)), fill=(255, 255, 255, al), anchor="mm")
-        d.text((cx, 650), sub, font=F(34, "SemiBold"), fill=(255, 255, 255, int(al * .85)), anchor="mm")
-        if i < len(opts) - 1 and p >= 1: text(ImageDraw.Draw(img), (cx + 280, 520), "OR", 40, fill=SOFT)
+        d.text((cx, 650), sub, font=F(fit(sub, 40, 460, "SemiBold"), "SemiBold"), fill=(255, 255, 255, int(al * .85)), anchor="mm")
+        if i < len(opts) - 1 and p >= 1 and not a.get("noor"): text(ImageDraw.Draw(img), (cx + 280, 520), "OR", 40, fill=SOFT)
         img.alpha_composite(l)
-    src(img, "CRFB calculations · combined funds, 75-year fix")
+    src(img, a.get("srcl", "CRFB calculations · combined funds, 75-year fix"))
 
 def k_vote(img, t, dur, a):
     p = back(t / 0.45); l, d = lay_(); al = int(255 * clamp(p))
