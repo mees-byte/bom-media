@@ -91,8 +91,11 @@ def photo_base(name, mode):
         im = im.resize((int(im.width * sc_) + 1, int(im.height * sc_) + 1), Image.LANCZOS)
         im = im.crop(((im.width - bw) // 2, (im.height - bh) // 2, (im.width - bw) // 2 + bw, (im.height - bh) // 2 + bh))
         im = ImageEnhance.Contrast(im).enhance(1.15)
-        im = ImageEnhance.Color(im).enhance(1.1 if mode == "bright" else 0.75)
+        im = ImageEnhance.Color(im).enhance({"bright": 1.1, "mid": 0.95}.get(mode, 0.75))
         im = im.filter(ImageFilter.UnsharpMask(radius=2, percent=60, threshold=2))
+        if mode == "mid":
+            im = im.filter(ImageFilter.GaussianBlur(1.2))
+            im = Image.blend(im, Image.new("RGB", im.size, (10, 10, 14)), 0.42)
         if mode == "dark":
             shade = Image.new("RGB", im.size, (8, 10, 20))
             im = im.filter(ImageFilter.GaussianBlur(2.2))
@@ -103,18 +106,34 @@ def photo_base(name, mode):
         v = v.filter(ImageFilter.GaussianBlur(200))
         g = Image.new("L", im.size, 0); gd = ImageDraw.Draw(g)
         for y in range(im.height):
-            st = 0.62 if mode == "dark" else 0.40
+            st = {"dark": 0.62, "mid": 0.55}.get(mode, 0.40)
             f = clamp((y - im.height * st) / (im.height * (1 - st)))
-            gd.line([(0, y), (im.width, y)], fill=int(255 - (210 if mode == "dark" else 235) * f))
+            gd.line([(0, y), (im.width, y)], fill=int(255 - {"dark": 210, "mid": 225}.get(mode, 235) * f))
         from PIL import ImageChops
         m = ImageChops.multiply(v, g)
         im = Image.composite(im, Image.new("RGB", im.size, (4, 5, 10)), m)
         _pc[k] = im
     return _pc[k]
 
+_brbg = {}
+def broll_bg(name, t, dim=0.40):
+    """Pixabay clip (ROOT/broll/<name>.mp4) as a moving, graded background"""
+    fdir = os.path.join(ROOT, "broll", "frames", name)
+    if name not in _brbg:
+        os.makedirs(fdir, exist_ok=True)
+        if not os.listdir(fdir):
+            subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(ROOT, "broll", name + ".mp4"),
+                            "-vf", f"fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}", "-q:v", "3", os.path.join(fdir, "%04d.jpg")], check=True)
+        _brbg[name] = sorted(os.listdir(fdir))
+    fr = _brbg[name]; i = int(t * FPS) % len(fr)
+    im = Image.open(os.path.join(fdir, fr[i])).convert("RGB")
+    return Image.blend(im, Image.new("RGB", im.size, (10, 10, 14)), dim)
+
 def bg_scene(name, T, t, dur):
-    if name.startswith("px:") or name.startswith("pxb:"):
-        mode = "bright" if name.startswith("pxb:") else "dark"
+    if name.startswith("br:"):
+        return broll_bg(name[3:], t)
+    if name.startswith("px:") or name.startswith("pxb:") or name.startswith("pxm:"):
+        mode = {"pxb": "bright", "pxm": "mid"}.get(name.split(":")[0], "dark")
         b = photo_base(name.split(":", 1)[1], mode)
         p = clamp(t / max(dur, 0.1))
         z = 1.0 + 0.10 * p                         # slow Ken Burns push-in
@@ -562,7 +581,7 @@ exec(open(os.path.join(ROOT, "scenes.py")).read())
 KINDS.update({k[2:]: v for k, v in list(globals().items()) if k.startswith("k_")})
 
 for i, s in enumerate(S):
-    s["t1"] = S[i + 1]["t0"] if i + 1 < len(S) else AUDIO_END + 1.2
+    s["t1"] = S[i + 1]["t0"] if i + 1 < len(S) else AUDIO_END + globals().get("OUTRO", 1.2)
 
 # snap scene boundaries to frame grid so total length is exact
 for s in S:
